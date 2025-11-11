@@ -1,0 +1,818 @@
+/* ========================================
+   PÁGINA DE PLANOS - ACADEMIA EQUILÍBRIO
+   ======================================== */
+
+:root {
+    --preto-grafite: #1A1A1A;
+    --dourado: #f37800;
+    --branco: #FFFFFF;
+    --cinza-claro: #CCCCCC;
+    --cinza-escuro: #2A2A2A;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+
+.planos-hero {
+    position: relative;
+    min-height: 65vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--preto-grafite) 0%, #0d0d0d 100%);
+    overflow: hidden;
+    padding: 120px 20px 80px;
+}
+
+.planos-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/hero-bg.jpg') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: 1;
+    filter: blur(3px);
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at center, transparent 0%, var(--preto-grafite) 100%);
+    z-index: 2;
+}
+
+.hero-pattern {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        repeating-linear-gradient(
+            90deg,
+            transparent,
+            transparent 2px,
+            rgba(243, 120, 0, 0.03) 2px,
+            rgba(243, 120, 0, 0.03) 4px
+        );
+    z-index: 2;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+}
+
+.planos-hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+    color: var(--branco);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-shadow: 0 0 30px rgba(243, 120, 0, 0.5);
+    background: linear-gradient(135deg, var(--branco) 0%, var(--dourado) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 1.4rem;
+    color: var(--cinza-claro);
+    max-width: 600px;
+    margin: 0 auto;
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+.breadcrumb {
+    font-size: 0.9rem;
+    color: var(--cinza-claro);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.breadcrumb a {
+    color: var(--dourado);
+    text-decoration: none;
+    transition: opacity 0.3s;
+}
+
+.breadcrumb a:hover {
+    opacity: 0.7;
+}
+
+/* ========================================
+   BANNER MATRÍCULA
+   ======================================== */
+
+.matricula-info-section {
+    background: var(--cinza-escuro);
+    padding: 40px 20px;
+    border-top: 3.5px solid var(--dourado);
+    border-bottom: 3.5px solid var(--dourado);
+    border-left: 3.5px solid var(--dourado);
+
+}
+
+.matricula-banner {
+    background: linear-gradient(135deg, rgba(243, 120, 0, 0.1) 0%, rgba(243, 120, 0, 0.05) 100%);
+    border: 2px solid var(--dourado);
+    border-radius: 15px 8px;
+    padding: 25px 40px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    max-width: 700px;
+    margin: 0 auto;
+    box-shadow: 0 5px 30px rgba(243, 120, 0, 0.2);
+    transition: all 0.8s ease;
+}
+
+.matricula-banner i {
+    font-size: 3rem;
+    color: var(--dourado);
+    animation: pulse-gold 2s ease-in-out infinite;
+}
+
+
+.matricula-texto h3 {
+    font-size: 1.5rem;
+    color: var(--dourado);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.matricula-texto p {
+    color: var(--cinza-claro);
+    font-size: 1rem;
+    margin: 0;
+}
+
+.matricula-texto strong {
+    color: var(--branco);
+    font-size: 1.2rem;
+}
+
+@keyframes pulse-gold {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* ========================================
+   SEÇÃO DE PLANOS PREMIUM
+   ======================================== */
+
+.planos-premium-section {
+    background: var(--preto-grafite);
+    padding: 80px 20px;
+    position: relative;
+    border-bottom: 3.5px solid var(--dourado);
+    border-right: 3.5px solid var(--dourado);
+}
+
+.planos-premium-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    background-image: radial-gradient(circle at 50% 50%, rgba(243, 120, 0, 0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    pointer-events: none;
+}
+
+.planos-premium-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+
+/* ========================================
+   CARDS DE PLANOS
+   ======================================== */
+
+.plano-premium-card {
+    background: linear-gradient(145deg, #1f1f1f 0%, var(--preto-grafite) 100%);
+    border: 2px solid rgba(243, 120, 0, 0.3);
+    border-radius: 20px;
+    padding: 50px 30px 40px 30px;
+    margin-top: 20px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+.plano-premium-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(243, 120, 0, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.plano-premium-card:hover::before {
+    opacity: 1;
+}
+
+.plano-premium-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--dourado);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(243, 120, 0, 0.3),
+        inset 0 0 40px rgba(243, 120, 0, 0.05);
+}
+
+/* Plano Destaque */
+.plano-premium-card.plano-destaque {
+    border: 3px solid var(--dourado);
+    transform: scale(1.05);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.5),
+        0 0 40px rgba(243, 120, 0, 0.3);
+}
+
+.plano-premium-card.plano-destaque:hover {
+    transform: scale(1.05) translateY(-10px);
+    box-shadow: 
+        0 25px 70px rgba(0, 0, 0, 0.7),
+        0 0 50px rgba(243, 120, 0, 0.5);
+}
+
+/* Badge do Plano */
+.plano-badge {
+    position: absolute;
+    top: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(135deg, var(--dourado) 0%, #d86c01 100%);
+    color: var(--preto-grafite);
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px rgba(243, 120, 0, 0.4);
+    z-index: 10;
+}
+
+.plano-badge.destaque {
+    background: linear-gradient(135deg, #ff9933 0%, var(--dourado) 100%);
+    font-size: 0.8rem;
+    padding: 12px 28px;
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { 
+        transform: translateX(-50%) scale(1);
+        box-shadow: 0 5px 15px rgba(243, 120, 0, 0.4);
+    }
+    50% { 
+        transform: translateX(-50%) scale(1.05);
+        box-shadow: 0 7px 20px rgba(243, 120, 0, 0.6);
+    }
+}
+
+/* Header do Plano */
+.plano-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.plano-header i {
+    margin-top: 60px;
+    font-size: 3.5rem;
+    color: var(--dourado);
+    margin-bottom: 15px;
+    display: block;
+    filter: drop-shadow(0 0 10px rgba(243, 120, 0, 0.5));
+}
+
+.plano-header h2 {
+    font-size: 2rem;
+    color: var(--dourado);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Preço */
+.plano-preco {
+    text-align: center;
+    margin-bottom: 25px;
+    padding: 25px 15px;
+    background: rgba(243, 120, 0, 0.05);
+    border-radius: 15px;
+    border: 1px solid rgba(243, 120, 0, 0.2);
+}
+
+.preco-valor {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 900;
+    color: var(--branco);
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(243, 120, 0, 0.3);
+}
+
+.preco-valor sup {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.preco-periodo {
+    display: block;
+    color: var(--cinza-claro);
+    font-size: 1rem;
+    margin-top: 10px;
+    font-weight: 400;
+}
+
+/* Badge de Economia */
+.economia-badge {
+    background: linear-gradient(135deg, #28a745 0%, #218838 100%);
+    color: var(--branco);
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 5px 15px rgba(40, 167, 69, 0.3);
+}
+
+.economia-badge.destaque {
+    background: linear-gradient(135deg, #ff9933 0%, var(--dourado) 100%);
+    color: var(--preto-grafite);
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.economia-badge i {
+    margin-right: 8px;
+}
+
+/* Vantagens e Benefícios */
+.plano-vantagens,
+.plano-beneficios {
+    margin-bottom: 30px;
+}
+
+.plano-vantagens h4,
+.plano-beneficios h4 {
+    color: var(--dourado);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.plano-vantagens ul,
+.plano-beneficios ul {
+    list-style: none;
+    padding: 0;
+}
+
+.plano-vantagens li,
+.plano-beneficios li {
+    color: var(--cinza-claro);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+}
+
+.plano-vantagens li:last-child,
+.plano-beneficios li:last-child {
+    border-bottom: none;
+}
+
+.plano-vantagens li:hover,
+.plano-beneficios li:hover {
+    color: var(--branco);
+    padding-left: 10px;
+}
+
+.plano-vantagens i,
+.plano-beneficios i {
+    color: var(--dourado);
+    font-size: 1.1rem;
+    flex-shrink: 0;
+}
+
+/* Botão do Plano */
+.btn-plano-premium {
+    width: 100%;
+    background: linear-gradient(135deg, var(--dourado) 0%, #f37800 100%);
+    color: var(--preto-grafite);
+    border: none;
+    padding: 18px 30px;
+    border-radius: 15px 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.4s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(243, 120, 0, 0.3);
+}
+
+.btn-plano-premium::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn-plano-premium:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.btn-plano-premium:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(243, 120, 0, 0.5);
+    border-radius: 8px 15px;
+}
+
+.btn-plano-premium:active {
+    transform: translateY(-1px);
+}
+
+.btn-plano-premium i {
+    margin-right: 10px;
+}
+
+/* Botão Destaque */
+.btn-plano-premium.destaque {
+    background: linear-gradient(135deg, #ff9933 0%, var(--dourado) 100%);
+    font-size: 1.2rem;
+    padding: 20px 35px;
+    box-shadow: 
+        0 15px 40px rgba(255, 215, 0, 0.4),
+        0 0 30px rgba(243, 120, 0, 0.3);
+}
+
+.btn-plano-premium.destaque:hover {
+    box-shadow: 
+        0 20px 50px rgba(255, 215, 0, 0.6),
+        0 0 40px rgba(243, 120, 0, 0.5);
+}
+
+/* ========================================
+   INFORMAÇÕES ADICIONAIS
+   ======================================== */
+
+.info-adicional {
+    background: var(--cinza-escuro);
+    padding: 60px 20px;
+    border-bottom: 3.5px solid var(--dourado);
+    border-left: 3.5px solid var(--dourado);
+}
+
+.info-box {
+    background: linear-gradient(135deg, rgba(243, 120, 0, 0.1) 0%, rgba(243, 120, 0, 0.05) 100%);
+    border-left: 5px solid var(--dourado);
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 900px;
+    margin: 0 auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.info-box i {
+    font-size: 3rem;
+    color: var(--dourado);
+    margin-bottom: 20px;
+    display: block;
+}
+
+.info-box h3 {
+    font-size: 2rem;
+    color: var(--dourado);
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.info-box p {
+    color: var(--cinza-claro);
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.info-box strong {
+    color: var(--branco);
+    font-weight: 600;
+}
+
+/* ========================================
+   CTA FINAL
+   ======================================== */
+
+.cta-final {
+    background: var(--preto-grafite);
+    padding: 100px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-final::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(ellipse at center, rgba(243, 120, 0, 0.1) 0%, transparent 70%);
+    border-bottom: 5px solid var(--dourado);
+    border-right: 3.5px solid var(--dourado);
+}
+
+.cta-box-final {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.cta-icon-large {
+    margin-bottom: 30px;
+}
+
+.cta-icon-large i {
+    font-size: 5rem;
+    color: var(--dourado);
+    filter: drop-shadow(0 0 30px rgba(243, 120, 0, 0.5));
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-20px); }
+}
+
+.cta-box-final h2 {
+    font-size: 3rem;
+    color: var(--branco);
+    margin-bottom: 20px;
+    font-weight: 900;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, var(--branco) 0%, var(--dourado) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cta-box-final > p {
+    font-size: 1.3rem;
+    color: var(--cinza-claro);
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+.btn-cta-final {
+    background: linear-gradient(135deg, var(--dourado) 0%, #d86c01 100%);
+    color: var(--preto-grafite);
+    border: none;
+    padding: 25px 60px;
+    border-radius: 25px 18px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.4s;
+    box-shadow: 
+        0 15px 40px rgba(243, 120, 0, 0.4),
+        0 0 30px rgba(243, 120, 0, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-cta-final::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-cta-final:hover::before {
+    left: 100%;
+}
+
+.btn-cta-final:hover {
+    transform: translateY(-5px);
+    border-radius: 18px 25px;
+    box-shadow: 
+        0 20px 50px rgba(243, 120, 0, 0.6),
+        0 0 50px rgba(243, 120, 0, 0.4);
+}
+
+.btn-cta-final i {
+    margin-right: 15px;
+}
+
+.cta-garantia {
+    margin-top: 30px;
+    color: var(--cinza-claro);
+    font-size: 1rem;
+    font-style: italic;
+}
+
+.cta-garantia i {
+    color: var(--dourado);
+    margin-right: 8px;
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+
+@media (max-width: 992px) {
+    .planos-hero h1 {
+        font-size: 3rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .planos-premium-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 25px;
+    }
+
+    .plano-premium-card.plano-destaque {
+        transform: scale(1);
+    }
+
+    .plano-premium-card.plano-destaque:hover {
+        transform: scale(1) translateY(-10px);
+    }
+
+    .cta-box-final h2 {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .planos-hero {
+        min-height: 50vh;
+        padding: 100px 20px 60px;
+    }
+
+    .planos-hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .matricula-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .matricula-banner i {
+        font-size: 2.5rem;
+    }
+
+    .planos-premium-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .plano-header i {
+        font-size: 3rem;
+    }
+
+    .plano-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .preco-valor {
+        font-size: 3rem;
+    }
+
+    .info-box {
+        padding: 30px 20px;
+    }
+
+    .info-box h3 {
+        font-size: 1.6rem;
+    }
+
+    .info-box p {
+        font-size: 1rem;
+    }
+
+    .cta-box-final h2 {
+        font-size: 2rem;
+    }
+
+    .cta-box-final > p {
+        font-size: 1.1rem;
+    }
+
+    .btn-cta-final {
+        padding: 20px 40px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .planos-hero h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+
+    .plano-badge {
+        top: 15px;
+        right: 15px;
+        font-size: 0.7rem;
+        padding: 6px 12px;
+    }
+
+    .plano-premium-card {
+        padding: 30px 20px;
+    }
+
+    .preco-valor {
+        font-size: 2.5rem;
+    }
+
+    .btn-plano-premium {
+        padding: 16px 25px;
+        font-size: 1rem;
+    }
+
+    .btn-plano-premium.destaque {
+        padding: 18px 30px;
+        font-size: 1.1rem;
+    }
+
+    .cta-icon-large i {
+        font-size: 4rem;
+    }
+
+    .cta-box-final h2 {
+        font-size: 1.6rem;
+    }
+
+    .btn-cta-final {
+        padding: 18px 35px;
+        font-size: 1rem;
+        letter-spacing: 1px;
+    }
+}

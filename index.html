@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Academia Equilíbrio - Corpo e mente em harmonia desde 2015. Musculação, Fisioterapia, Muay Thai e Zumba em Votorantim/SP">
+    <meta name="keywords" content="academia, musculação, fisioterapia, muay thai, zumba, votorantim, equilíbrio">
+    <title>Academia Equilíbrio - Corpo e mente em harmonia desde 2015</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+    <!-- Header/Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo">
+                        <a href="#inicio">
+                            <img src="assets/images/logo.svg" alt="Logo Academia Equilíbrio" class="logo-img">
+                            <span>Academia <strong>Equilíbrio</strong></span>
+                        </a>
+                    </div>
+
+                    <button class="mobile-toggle" aria-label="Menu">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+
+                    <ul class="nav-menu">
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="modalidades.html">Modalidades</a></li>
+                        <li><a href="planos.html">Planos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#" onclick="openMatriculaModal(); return false;" class="btn-nav">Matricule-se</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+            <div class="container">
+                <div class="hero-text" data-aos="fade-up">
+                    <h1 data-text="Equilíbrio entre corpo e mente desde 2015"><span
+                            class="destaque-equilibrio">Equilíbrio</span> entre corpo e mente
+                        desde 2015</h1>
+                    <p class="hero-subtitle">Musculação • Fisioterapia • Muay Thai • Zumba</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="openExperimentalModal()">
+                            <i class="fas fa-star"></i> Agende sua aula experimental
+                        </button>
+                        <a href="#planos" class="btn btn-secondary">
+                            <i class="fas fa-tag"></i> Veja nossos planos
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+
+        <!-- Barra Motivacional Animada -->
+        <div class="motivation-bar">
+            <div class="motivation-content">
+                <div class="motivation-item">
+                    <span class="motivation-text">MOVIMENTE-SE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">TREINE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">EVOLUA</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">SUPERE-SE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">CONQUISTE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <!-- Duplicar para loop infinito -->
+                <div class="motivation-item">
+                    <span class="motivation-text">MOVIMENTE-SE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">TREINE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">EVOLUA</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">SUPERE-SE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+                <div class="motivation-item">
+                    <span class="motivation-text">CONQUISTE</span>
+                    <img src="assets/images/logo.svg" alt="Logo" class="motivation-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Diferenciais -->
+    <section class="diferenciais">
+        <div class="container">
+            <div class="diferenciais-grid">
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="icon-box">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <h3>Profissionais Capacitados</h3>
+                    <p>Equipe qualificada e experiente</p>
+                </div>
+
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon-box">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Ambiente Agradável</h3>
+                    <p>Estrutura moderna e confortável</p>
+                </div>
+
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon-box">
+                        <i class="fas fa-clipboard-list"></i>
+                    </div>
+                    <h3>Treinos Personalizados</h3>
+                    <p>Planejamento individual e eficaz</p>
+                </div>
+
+                <div class="diferencial-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="icon-box">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Foco na Saúde</h3>
+                    <p>Seu bem-estar é nossa prioridade</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container">
+            <div class="sobre-wrapper">
+                <div class="sobre-image" data-aos="fade-right">
+                    <img src="assets/images/about.jpg" alt="Academia Equilíbrio">
+                    <div class="sobre-badge">
+                        <span class="badge-year">2015</span>
+                        <span class="badge-text">Anos de tradição</span>
+                    </div>
+                </div>
+
+                <div class="sobre-content" data-aos="fade-left">
+                    <h2 class="section-title">Sobre Nós</h2>
+                    <p>
+                        Desde 2015 ajudando pessoas a alcançarem seus objetivos com equilíbrio,
+                        saúde e dedicação. Contamos com uma equipe de profissionais qualificados
+                        e uma estrutura completa para musculação, fisioterapia e aulas dinâmicas.
+                    </p>
+                    <p>
+                        Nossa missão é proporcionar um ambiente acolhedor onde cada aluno encontra
+                        o suporte necessário para transformar sua vida através do exercício físico
+                        e cuidados com a saúde.
+                    </p>
+
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <strong>10+</strong>
+                                <span>Anos de experiência</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <strong>500+</strong>
+                                <span>Alunos ativos</span>
+                            </div>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-trophy"></i>
+                            <div>
+                                <strong>100%</strong>
+                                <span>Dedicação</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="sobre.html" class="btn btn-primary" style="margin-top: 2rem; display: inline-flex;">
+                        <i class="fas fa-info-circle"></i> Conheça Nossa História
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modalidades -->
+    <section id="modalidades" class="modalidades">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Nossas Modalidades</h2>
+                <p>Encontre a atividade perfeita para você</p>
+            </div>
+
+            <div class="modalidades-grid">
+                <div class="modalidade-card" data-aos="zoom-in" data-aos-delay="0">
+                    <div class="modalidade-image">
+                        <img src="assets/images/musculacao.svg" alt="Musculação">
+                        <div class="modalidade-overlay">
+                            <i class="fas fa-dumbbell"></i>
+                        </div>
+                    </div>
+                    <div class="modalidade-content">
+                        <h3>Musculação</h3>
+                        <p>Treinos completos com acompanhamento profissional para alcançar seus objetivos.</p>
+                        <a href="musculacao.html" class="btn-more">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="modalidade-card" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="modalidade-image">
+                        <img src="assets/images/muaythai.svg" alt="Muay Thai">
+                        <div class="modalidade-overlay">
+                            <i class="fas fa-hand-rock"></i>
+                        </div>
+                    </div>
+                    <div class="modalidade-content">
+                        <h3>Muay Thai</h3>
+                        <p>Aulas dinâmicas desta modalidade que unem defesa pessoal e condicionamento físico.</p>
+                        <a href="muaythai.html" class="btn-more">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="modalidade-card" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="modalidade-image">
+                        <img src="assets/images/zumba.svg" alt="Zumba">
+                        <div class="modalidade-overlay">
+                            <i class="fas fa-music"></i>
+                        </div>
+                    </div>
+                    <div class="modalidade-content">
+                        <h3>Zumba</h3>
+                        <p>Dança e diversão com queima calórica intensa em um ambiente animado.</p>
+                        <a href="zumba.html" class="btn-more">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="modalidade-card" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="modalidade-image">
+                        <img src="assets/images/fisioterapia.svg" alt="Fisioterapia">
+                        <div class="modalidade-overlay">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                    </div>
+                    <div class="modalidade-content">
+                        <h3>Fisioterapia</h3>
+                        <p>Reabilitação, fortalecimento e qualidade de vida com profissionais especializados.</p>
+                        <a href="fisioterapia.html" class="btn-more">
+                            Saiba mais <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos -->
+    <section id="planos" class="planos">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Nossos Planos</h2>
+
+                <p>Escolha o plano ideal para você</p>
+            </div>
+
+            <div class="planos-resumo" data-aos="fade-up">
+                <div class="plano-resumo-card">
+                    <i class="fas fa-calendar-day"></i>
+                    <h3>Mensal</h3>
+                    <p class="preco-destaque">R$ 110,00</p>
+                    <p class="info-simples">Flexibilidade total</p>
+                </div>
+
+                <div class="plano-resumo-card">
+                    <i class="fas fa-calendar-week"></i>
+                    <h3>Bimestral</h3>
+                    <p class="preco-destaque">2x R$ 100,00</p>
+                    <p class="info-simples">Economia de R$ 20</p>
+                </div>
+
+                <div class="plano-resumo-card destaque">
+                    <div class="badge-popular">Mais Popular</div>
+                    <i class="fas fa-calendar-alt"></i>
+                    <h3>Trimestral</h3>
+                    <p class="preco-destaque">3x R$ 90,00</p>
+                    <p class="info-simples">Economia de R$ 90</p>
+                </div>
+
+                <div class="plano-resumo-card">
+                    <i class="fas fa-calendar"></i>
+                    <h3>Semestral</h3>
+                    <p class="preco-destaque">6x R$ 80,00</p>
+                    <p class="info-simples">Economia de R$ 230</p>
+                </div>
+            </div>
+
+            <div class="planos-cta" data-aos="fade-up" data-aos-delay="200">
+                <p class="cta-texto">
+                    <i class="fas fa-star"></i>
+                    Todos os planos incluem acesso ilimitado à musculação, Muay Thai, Zumba e acompanhamento
+                    profissional
+                </p>
+                <a href="planos.html" class="btn-ver-planos">
+                    <i class="fas fa-eye"></i> Ver Planos Completos
+                </a>
+                <p class="matricula-info-simples">
+                    <i class="fas fa-info-circle"></i>
+                    Taxa de matrícula: R$ 50,00 (incluso 1ª avaliação física)
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Horários -->
+    <section class="horarios">
+        <div class="container">
+            <div class="horarios-wrapper" data-aos="fade-up">
+                <div class="horarios-icon">
+                    <i class="far fa-clock"></i>
+                </div>
+                <h2>Horário de Funcionamento</h2>
+                <div class="horarios-grid">
+                    <div class="horario-item">
+                        <span class="dia">Segunda a Sexta</span>
+                        <span class="hora">06:00 – 22:00</span>
+                    </div>
+                    <div class="horario-item">
+                        <span class="dia">Sábado</span>
+                        <span class="hora">Fechado</span>
+                        <span class="obs">(Aberto em feriados especiais)</span>
+                    </div>
+                    <div class="horario-item">
+                        <span class="dia">Domingo</span>
+                        <span class="hora">Fechado</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2 class="section-title">Entre em Contato</h2>
+
+                <p>Estamos prontos para atendê-lo</p>
+            </div>
+
+            <div class="contato-wrapper">
+                <div class="contato-info" data-aos="fade-right">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Av. Carmen Galan Burgos, 71<br>Jardim Archila, Votorantim - SP<br>CEP: 18111-460</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p><a href="tel:1530234707">(15) 3023-4707</a></p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horário</h4>
+                            <p>Segunda a Sexta: 06:00 - 22:00</p>
+                        </div>
+                    </div>
+
+                    <div class="social-links">
+                        <h4>Redes Sociais</h4>
+                        <div class="social-icons">
+                            <a href="https://www.instagram.com/academia_equilibrio1/" target="_blank"
+                                aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.facebook.com/academiaequilibrioefisioterapiavidaesaude/?locale=pt_BR"
+                                target="_blank" aria-label="Facebook">
+                                <i class="fab fa-facebook"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contato-form" data-aos="fade-left">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="mapa" data-aos="fade-up">
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3658.0!2d-47.4397!3d-23.5447!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x94c58b3e3e3e3e3e%3A0x3e3e3e3e3e3e3e3e!2sAv.%20Carmen%20Galan%20Burgos%2C%2071%20-%20Jardim%20Archila%2C%20Votorantim%20-%20SP%2C%2018111-460!5e0!3m2!1spt-BR!2sbr!4v1234567890!5m2!1spt-BR!2sbr"
+                    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.svg" alt="Logo Academia Equilíbrio" class="logo-img">
+                        <span>Academia <strong>Equilíbrio</strong></span>
+                    </div>
+                    <p>Corpo e mente em harmonia desde 2015</p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="sobre.html">Sobre</a></li>
+                        <li><a href="modalidades.html">Modalidades</a></li>
+                        <li><a href="planos.html">Planos</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (15) 3023-4707</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Votorantim/SP</p>
+                </div>
+
+                <div class="footer-social">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/academia_equilibrio1/" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://www.facebook.com/academiaequilibrioefisioterapiavidaesaude/?locale=pt_BR"
+                            target="_blank">
+                            <i class="fab fa-facebook"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 Academia Equilíbrio — Todos os direitos reservados</p>
+                <p>Desenvolvido por <strong><a href="https://www.instagram.com/kaiobahh/" target="_blank">Caio Manfio</a></strong></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal Aula Experimental -->
+    <div id="experimentalModal" class="modal">
+        <div class="modal-content" data-aos="zoom-in">
+            <span class="close" onclick="closeExperimentalModal()">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-star"></i>
+                <h2>Aula Experimental Grátis!</h2>
+            </div>
+            <p>Venha conhecer nossa academia e experimente uma aula sem compromisso!</p>
+            <form id="experimentalForm">
+                <div class="form-group">
+                    <label for="exp-nome">Nome Completo</label>
+                    <input type="text" id="exp-nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="exp-telefone">Telefone/WhatsApp</label>
+                    <input type="tel" id="exp-telefone" required>
+                </div>
+                <div class="form-group">
+                    <label for="exp-modalidade">Modalidade de Interesse</label>
+                    <select id="exp-modalidade" required>
+                        <option value="">Selecione...</option>
+                        <option value="Musculação">Musculação</option>
+                        <option value="Muay Thai">Muay Thai</option>
+                        <option value="Zumba">Zumba</option>
+                        <option value="Fisioterapia">Fisioterapia</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-check"></i> Quero participar
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Matrícula -->
+    <div id="matriculaModal" class="modal">
+        <div class="modal-content" data-aos="zoom-in">
+            <span class="close" onclick="closeMatriculaModal()">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-clipboard-check"></i>
+                <h2>Matricule-se Agora</h2>
+            </div>
+            <form id="matriculaForm">
+                <!-- Campos de Dados Pessoais - Lado a Lado -->
+                <div class="form-row-matricula">
+                    <div class="form-group">
+                        <label for="mat-nome">Nome Completo</label>
+                        <input type="text" id="mat-nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mat-email">E-mail</label>
+                        <input type="email" id="mat-email" required placeholder="seu@email.com">
+                    </div>
+                </div>
+
+                <!-- Seleção de Plano em Cards -->
+                <div class="planos-section-matricula">
+                    <h3><i class="fas fa-credit-card"></i> Escolha seu Plano</h3>
+                    <div class="planos-grid-matricula">
+
+                        <!-- Plano Mensal -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Mensal - R$ 110,00" required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge">MENSAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">110</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">Flexibilidade total</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Sem fidelidade</li>
+                                    <li><i class="fas fa-check"></i> Cancele quando quiser</li>
+                                </ul>
+                            </div>
+                        </label>
+
+                        <!-- Plano Bimestral -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Bimestral - 2x R$ 100,00 ou R$ 180,00 à vista"
+                                required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge">BIMESTRAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">100</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">2x R$ 100 ou R$ 180 à vista</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Economia de 9%</li>
+                                    <li><i class="fas fa-check"></i> 2 meses de treino</li>
+                                </ul>
+                            </div>
+                        </label>
+
+                        <!-- Plano Trimestral -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Trimestral - 3x R$ 90,00 ou R$ 240,00 à vista"
+                                required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge popular">TRIMESTRAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">90</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">3x R$ 90 ou R$ 240 à vista</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Economia de 18%</li>
+                                    <li><i class="fas fa-check"></i> Mais escolhido</li>
+                                </ul>
+                                <span class="badge-popular">MAIS POPULAR</span>
+                            </div>
+                        </label>
+
+                        <!-- Plano Semestral -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Semestral - 6x R$ 80,00 ou R$ 430,00 à vista"
+                                required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge melhor">SEMESTRAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">80</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">6x R$ 80 ou R$ 430 à vista</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Economia de 27%</li>
+                                    <li><i class="fas fa-check"></i> Melhor custo-benefício</li>
+                                </ul>
+                                <span class="badge-melhor">MELHOR OFERTA</span>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="form-actions-matricula">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i> Finalizar no WhatsApp
+                    </button>
+                    <a href="planos.html" class="btn btn-secondary" target="_blank">
+                        <i class="fas fa-info-circle"></i> Ver Detalhes dos Planos
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Modalidade -->
+    <div id="modalidadeModal" class="modal">
+        <div class="modal-content modal-large" data-aos="zoom-in">
+            <span class="close" onclick="closeModalidadeModal()">&times;</span>
+            <div id="modalidadeContent"></div>
+        </div>
+    </div>
+
+    <!-- Pop-up Aula Experimental -->
+    <div id="popupAulaExperimental" class="popup-overlay">
+        <div class="popup-content">
+            <button class="popup-close" onclick="closePopupAulaExperimental()">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="popup-icon">
+                <i class="fas fa-star"></i>
+            </div>
+            <h2>Aula Experimental Grátis!</h2>
+            <p>Conheça nossa estrutura e experimente nossos treinos sem compromisso.</p>
+            <ul class="popup-benefits">
+                <li><i class="fas fa-check"></i> Avaliação física completa</li>
+                <li><i class="fas fa-check"></i> Acompanhamento profissional</li>
+                <li><i class="fas fa-check"></i> Totalmente gratuito</li>
+            </ul>
+            <button class="btn btn-primary" onclick="openExperimentalModal(); closePopupAulaExperimental();">
+                <i class="fas fa-calendar-check"></i> Agendar Agora
+            </button>
+            <button class="btn-text" onclick="closePopupAulaExperimental()">
+                Não, obrigado
+            </button>
+            <div class="popup-checkbox">
+                <label>
+                    <input type="checkbox" id="naoMostrarPopup">
+                    <span>Não mostrar isso novamente</span>
+                </label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+
+</html>

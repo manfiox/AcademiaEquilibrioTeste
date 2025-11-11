@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Planos da Academia Equilíbrio - Escolha o plano ideal para você em Votorantim/SP">
+    <title>Nossos Planos - Academia Equilíbrio</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Anton&family=Poppins:wght@300;400;500;600;700;800&family=Raleway:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/planos.css">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-wrapper">
+                    <div class="logo">
+                        <a href="index.html">
+                            <img src="assets/images/logo.svg" alt="Logo Academia Equilíbrio" class="logo-img">
+                            <span>Academia <strong>Equilíbrio</strong></span>
+                        </a>
+                    </div>
+                    <button class="mobile-toggle" aria-label="Menu">
+                        <span></span><span></span><span></span>
+                    </button>
+                    <ul class="nav-menu">
+                        <li><a href="index.html#inicio">Início</a></li>
+                        <li><a href="index.html#sobre">Sobre</a></li>
+                        <li><a href="modalidades.html">Modalidades</a></li>
+                        <li><a href="planos.html" class="active">Planos</a></li>
+                        <li><a href="index.html#contato">Contato</a></li>
+                        <li><a href="#" onclick="openMatriculaModal(); return false;" class="btn-nav">Matricule-se</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="planos-hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <div class="container">
+                <div class="breadcrumb" data-aos="fade-down">
+                    <a href="index.html">Início</a> / <span>Planos</span>
+                </div>
+                <h1 data-aos="fade-up">Nossos Planos</h1>
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
+                    Escolha o plano ideal e comece sua transformação hoje.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informação da Matrícula -->
+    <section class="matricula-info-section">
+        <div class="container">
+            <div class="matricula-banner" data-aos="zoom-in">
+                <i class="fas fa-star"></i>
+                <div class="matricula-texto">
+                    <h3>Taxa de Matrícula</h3>
+                    <p><strong>R$ 50,00</strong> - Incluso 1ª avaliação física completa</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Planos Section -->
+    <section id="planos-section" class="planos-premium-section">
+        <div class="container">
+            <div class="planos-premium-grid">
+
+                <!-- Plano Mensal -->
+                <div class="plano-premium-card" data-aos="fade-up" data-aos-delay="0">
+                    <div class="plano-badge">Popular</div>
+                    <div class="plano-header">
+                        <i class="fas fa-calendar-day"></i>
+                        <h2>Mensal</h2>
+                    </div>
+                    <div class="plano-preco">
+                        <span class="preco-valor">R$ 110<sup>,00</sup></span>
+                        <span class="preco-periodo">por mês</span>
+                    </div>
+                    <div class="plano-vantagens">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Flexibilidade total</li>
+                            <li><i class="fas fa-check-circle"></i> Sem compromisso de longo prazo</li>
+                            <li><i class="fas fa-check-circle"></i> Acesso ilimitado</li>
+                            <li><i class="fas fa-check-circle"></i> Todas as modalidades</li>
+                        </ul>
+                    </div>
+                    <div class="plano-beneficios">
+                        <h4>Incluído:</h4>
+                        <ul>
+                            <li><i class="fas fa-dumbbell"></i> Musculação</li>
+                            <li><i class="fas fa-hand-rock"></i> Muay Thai</li>
+                            <li><i class="fas fa-music"></i> Zumba</li>
+                            <li><i class="fas fa-user-check"></i> Acompanhamento profissional</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plano-premium" onclick="openMatriculaModal()">
+                        <i class="fas fa-star"></i> Quero esse plano
+                    </button>
+                </div>
+
+                <!-- Plano Bimestral -->
+                <div class="plano-premium-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="plano-header">
+                        <i class="fas fa-calendar-week"></i>
+                        <h2>Bimestral</h2>
+                    </div>
+                    <div class="plano-preco">
+                        <span class="preco-valor">2x R$ 100<sup>,00</sup></span>
+                        <span class="preco-periodo">ou R$ 180,00 à vista</span>
+                    </div>
+                    <div class="economia-badge">
+                        <i class="fas fa-piggy-bank"></i> Economia de R$ 20
+                    </div>
+                    <div class="plano-vantagens">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Economize R$ 20</li>
+                            <li><i class="fas fa-check-circle"></i> Pagamento parcelado</li>
+                            <li><i class="fas fa-check-circle"></i> Desconto à vista</li>
+                            <li><i class="fas fa-check-circle"></i> Maior comprometimento</li>
+                        </ul>
+                    </div>
+                    <div class="plano-beneficios">
+                        <h4>Incluído:</h4>
+                        <ul>
+                            <li><i class="fas fa-dumbbell"></i> Musculação</li>
+                            <li><i class="fas fa-hand-rock"></i> Muay Thai</li>
+                            <li><i class="fas fa-music"></i> Zumba</li>
+                            <li><i class="fas fa-user-check"></i> Acompanhamento profissional</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plano-premium" onclick="openMatriculaModal()">
+                        <i class="fas fa-star"></i> Quero esse plano
+                    </button>
+                </div>
+
+                <!-- Plano Trimestral - DESTAQUE -->
+                <div class="plano-premium-card plano-destaque" data-aos="fade-up" data-aos-delay="200">
+                    <div class="plano-badge destaque">Melhor Custo-Benefício</div>
+                    <div class="plano-header">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h2>Trimestral</h2>
+                    </div>
+                    <div class="plano-preco">
+                        <span class="preco-valor">3x R$ 90<sup>,00</sup></span>
+                        <span class="preco-periodo">ou R$ 240,00 à vista</span>
+                    </div>
+                    <div class="economia-badge destaque">
+                        <i class="fas fa-piggy-bank"></i> Economia de R$ 90
+                    </div>
+                    <div class="plano-vantagens">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Economize R$ 90</li>
+                            <li><i class="fas fa-check-circle"></i> Melhor custo-benefício</li>
+                            <li><i class="fas fa-check-circle"></i> Resultados garantidos</li>
+                            <li><i class="fas fa-check-circle"></i> Desconto progressivo</li>
+                            <li><i class="fas fa-check-circle"></i> Prioridade em horários</li>
+                        </ul>
+                    </div>
+                    <div class="plano-beneficios">
+                        <h4>Incluído:</h4>
+                        <ul>
+                            <li><i class="fas fa-dumbbell"></i> Musculação</li>
+                            <li><i class="fas fa-hand-rock"></i> Muay Thai</li>
+                            <li><i class="fas fa-music"></i> Zumba</li>
+                            <li><i class="fas fa-user-check"></i> Acompanhamento profissional</li>
+                            <li><i class="fas fa-chart-line"></i> Reavaliação física trimestral</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plano-premium destaque" onclick="openMatriculaModal()">
+                        <i class="fas fa-crown"></i> Quero esse plano
+                    </button>
+                </div>
+
+                <!-- Plano Semestral -->
+                <div class="plano-premium-card" data-aos="fade-up" data-aos-delay="300">
+                    <div class="plano-badge">Máxima Economia</div>
+                    <div class="plano-header">
+                        <i class="fas fa-calendar"></i>
+                        <h2>Semestral</h2>
+                    </div>
+                    <div class="plano-preco">
+                        <span class="preco-valor">6x R$ 80<sup>,00</sup></span>
+                        <span class="preco-periodo">ou R$ 430,00 à vista</span>
+                    </div>
+                    <div class="economia-badge">
+                        <i class="fas fa-piggy-bank"></i> Economia de R$ 230
+                    </div>
+                    <div class="plano-vantagens">
+                        <h4>Vantagens:</h4>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Máxima economia - R$ 230</li>
+                            <li><i class="fas fa-check-circle"></i> Menor valor mensal</li>
+                            <li><i class="fas fa-check-circle"></i> Transformação completa</li>
+                            <li><i class="fas fa-check-circle"></i> Acompanhamento estendido</li>
+                            <li><i class="fas fa-check-circle"></i> Benefícios exclusivos</li>
+                        </ul>
+                    </div>
+                    <div class="plano-beneficios">
+                        <h4>Incluído:</h4>
+                        <ul>
+                            <li><i class="fas fa-dumbbell"></i> Musculação</li>
+                            <li><i class="fas fa-hand-rock"></i> Muay Thai</li>
+                            <li><i class="fas fa-music"></i> Zumba</li>
+                            <li><i class="fas fa-user-check"></i> Acompanhamento profissional</li>
+                            <li><i class="fas fa-chart-line"></i> Reavaliação física trimestral</li>
+                            <li><i class="fas fa-gift"></i> 1 sessão de fisioterapia grátis</li>
+                        </ul>
+                    </div>
+                    <button class="btn-plano-premium" onclick="openMatriculaModal()">
+                        <i class="fas fa-star"></i> Quero esse plano
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Informações Adicionais -->
+    <section class="info-adicional">
+        <div class="container">
+            <div class="info-box" data-aos="fade-up">
+                <i class="fas fa-check-double"></i>
+                <h3>O que está incluído em todos os planos?</h3>
+                <p>
+                    Todos os planos incluem acesso ilimitado à <strong>musculação</strong>,
+                    aulas de <strong>Muay Thai</strong>, <strong>Zumba</strong> e acompanhamento
+                    de profissionais capacitados. Você tem liberdade total para treinar nos
+                    horários que melhor se adequam à sua rotina.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="cta-final" data-aos="fade-up">
+        <div class="container">
+            <div class="cta-box-final">
+                <div class="cta-icon-large">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h2>Comece agora e conquiste seus objetivos</h2>
+                <p>Não deixe para amanhã a transformação que você pode começar hoje. Escolha seu plano e faça parte da
+                    família Equilíbrio!</p>
+                <button class="btn-cta-final" onclick="scrollToPlanos()">
+                    <i class="fas fa-rocket"></i> Garanta seu plano hoje mesmo
+                </button>
+                <p class="cta-garantia">
+                    <i class="fas fa-shield-alt"></i> Satisfação garantida ou seu dinheiro de volta
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <img src="assets/images/logo.svg" alt="Logo Academia Equilíbrio" class="logo-img">
+                        <span>Academia <strong>Equilíbrio</strong></span>
+                    </div>
+                    <p>Corpo e mente em harmonia desde 2015</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="index.html#inicio">Início</a></li>
+                        <li><a href="index.html#sobre">Sobre</a></li>
+                        <li><a href="modalidades.html">Modalidades</a></li>
+                        <li><a href="planos.html">Planos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contato</h4>
+                    <p><i class="fas fa-phone"></i> (15) 3023-4707</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Votorantim/SP</p>
+                </div>
+                <div class="footer-social">
+                    <h4>Redes Sociais</h4>
+                    <div class="social-icons">
+                        <a href="https://www.instagram.com/academia_equilibrio1/" target="_blank"><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/academiaequilibrioefisioterapiavidaesaude/?locale=pt_BR"
+                            target="_blank"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Academia Equilíbrio — Todos os direitos reservados</p>
+                <p>Desenvolvido por <strong>Caio Manfio</strong> 📍 Votorantim/SP</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal de Matrícula -->
+    <div id="matriculaModal" class="modal">
+        <div class="modal-content" data-aos="zoom-in">
+            <span class="close" onclick="closeMatriculaModal()">&times;</span>
+            <div class="modal-header">
+                <i class="fas fa-clipboard-check"></i>
+                <h2>Matricule-se Agora</h2>
+            </div>
+            <form id="matriculaForm">
+                <!-- Campos de Dados Pessoais - Lado a Lado -->
+                <div class="form-row-matricula">
+                    <div class="form-group">
+                        <label for="mat-nome">Nome Completo</label>
+                        <input type="text" id="mat-nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mat-email">E-mail</label>
+                        <input type="email" id="mat-email" required placeholder="seu@email.com">
+                    </div>
+                </div>
+
+                <!-- Seleção de Plano em Cards -->
+                <div class="planos-section-matricula">
+                    <h3><i class="fas fa-credit-card"></i> Escolha seu Plano</h3>
+                    <div class="planos-grid-matricula">
+
+                        <!-- Plano Mensal -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Mensal - R$ 110,00" required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge">MENSAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">110</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">Flexibilidade total</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Sem fidelidade</li>
+                                    <li><i class="fas fa-check"></i> Cancele quando quiser</li>
+                                </ul>
+                            </div>
+                        </label>
+
+                        <!-- Plano Bimestral -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Bimestral - 2x R$ 100,00 ou R$ 180,00 à vista"
+                                required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge">BIMESTRAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">100</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">2x R$ 100 ou R$ 180 à vista</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Economia de 9%</li>
+                                    <li><i class="fas fa-check"></i> 2 meses de treino</li>
+                                </ul>
+                            </div>
+                        </label>
+
+                        <!-- Plano Trimestral -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Trimestral - 3x R$ 90,00 ou R$ 240,00 à vista"
+                                required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge popular">TRIMESTRAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">90</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">3x R$ 90 ou R$ 240 à vista</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Economia de 18%</li>
+                                    <li><i class="fas fa-check"></i> Mais escolhido</li>
+                                </ul>
+                                <span class="badge-popular">MAIS POPULAR</span>
+                            </div>
+                        </label>
+
+                        <!-- Plano Semestral -->
+                        <label class="plano-card-matricula">
+                            <input type="radio" name="plano" value="Semestral - 6x R$ 80,00 ou R$ 430,00 à vista"
+                                required>
+                            <div class="plano-card-content-matricula">
+                                <div class="plano-badge melhor">SEMESTRAL</div>
+                                <div class="plano-price">
+                                    <span class="currency">R$</span>
+                                    <span class="value">80</span>
+                                    <span class="period">/mês</span>
+                                </div>
+                                <p class="plano-description">6x R$ 80 ou R$ 430 à vista</p>
+                                <ul class="plano-features">
+                                    <li><i class="fas fa-check"></i> Economia de 27%</li>
+                                    <li><i class="fas fa-check"></i> Melhor custo-benefício</li>
+                                </ul>
+                                <span class="badge-melhor">MELHOR OFERTA</span>
+                            </div>
+                        </label>
+
+                    </div>
+                </div>
+
+                <!-- Botões de Ação -->
+                <div class="form-actions-matricula">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fab fa-whatsapp"></i> Finalizar no WhatsApp
+                    </button>
+                    <a href="planos.html" class="btn btn-secondary">
+                        <i class="fas fa-info-circle"></i> Ver Detalhes dos Planos
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script>
+        function scrollToPlanos() {
+            document.getElementById('planos-section').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+
+</html>
