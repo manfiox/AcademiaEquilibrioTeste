@@ -1068,6 +1068,27 @@ h4 { font-size: 1.5rem; }
     border-radius: 8px 15px;
 }
 
+/* CTA Ver Mais Modalidades */
+.modalidades-cta {
+    text-align: center;
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, rgba(243, 120, 0, 0.05) 0%, transparent 100%);
+    border-radius: 20px;
+    border: 2px solid rgba(243, 120, 0, 0.2);
+}
+
+.modalidades-cta p {
+    color: var(--cinza-claro);
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.btn-large {
+    padding: 1.2rem 3rem;
+    font-size: 1.1rem;
+}
+
 /* ========== PLANOS ========== */
 .planos {
     padding: 6rem 0;
