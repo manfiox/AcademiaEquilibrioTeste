@@ -325,12 +325,51 @@ function initFormValidation() {
             e.preventDefault();
             handleMatriculaForm();
         });
+        
+        // Habilitar/desabilitar botão de confirmar baseado na validação
+        const nomeInput = document.getElementById('matricula-nome');
+        const cpfInput = document.getElementById('matricula-cpf');
+        const planoInputs = document.querySelectorAll('input[name="plano"]');
+        const confirmarBtn = matriculaForm.querySelector('.btn-confirmar-matricula');
+        
+        function validateMatriculaForm() {
+            const nome = nomeInput ? nomeInput.value.trim() : '';
+            const cpf = cpfInput ? cpfInput.value.trim() : '';
+            const planoSelecionado = document.querySelector('input[name="plano"]:checked');
+            
+            if (confirmarBtn) {
+                if (nome.length >= 3 && cpf.length >= 14 && planoSelecionado) {
+                    confirmarBtn.disabled = false;
+                } else {
+                    confirmarBtn.disabled = true;
+                }
+            }
+        }
+        
+        // Event listeners para validação em tempo real
+        if (nomeInput) {
+            nomeInput.addEventListener('input', validateMatriculaForm);
+        }
+        
+        if (cpfInput) {
+            cpfInput.addEventListener('input', function(e) {
+                maskCPF(e.target);
+                validateMatriculaForm();
+            });
+        }
+        
+        planoInputs.forEach(input => {
+            input.addEventListener('change', validateMatriculaForm);
+        });
+        
+        // Validação inicial
+        validateMatriculaForm();
     }
     
-    // Máscara de CPF
-    const cpfInput = document.getElementById('matricula-cpf');
-    if (cpfInput) {
-        cpfInput.addEventListener('input', function(e) {
+    // Máscara de CPF (fallback caso não encontre no formulário)
+    const cpfInputFallback = document.getElementById('matricula-cpf');
+    if (cpfInputFallback && !matriculaForm) {
+        cpfInputFallback.addEventListener('input', function(e) {
             maskCPF(e.target);
         });
     }
@@ -380,13 +419,10 @@ function handleExperimentalForm() {
 
 // ========== PROCESSAR FORMULÁRIO DE MATRÍCULA ==========
 function handleMatriculaForm(e) {
-    // Funcionalidade temporariamente desabilitada
     if (e) {
         e.preventDefault();
     }
-    return false;
     
-    /* CÓDIGO COMENTADO - SERÁ REATIVADO POSTERIORMENTE
     const nome = document.getElementById('matricula-nome').value.trim();
     const cpf = document.getElementById('matricula-cpf').value.trim();
     const planoSelecionado = document.querySelector('input[name="plano"]:checked');
@@ -409,20 +445,19 @@ function handleMatriculaForm(e) {
     
     const plano = planoSelecionado.value;
     
-    // Criar mensagem para WhatsApp
+    // Criar mensagem para WhatsApp no formato solicitado
     const whatsappMessage = `Olá, vim pelo site e gostaria de dar início a minha matrícula...%0A%0A%0A%0A` +
                            `*SOLICITAÇÃO DE MATRÍCULA*%0A%0A` +
                            `NOME: ${nome}%0A%0A` +
-                           `CPF: ${cpf}%0A%0A` +
+                           `CPF:  ${cpf}%0A%0A` +
                            `PLANO SELECIONADO: ${plano}`;
     
     // Redirecionar para WhatsApp
-    window.open(`https://wa.me/5515996177546?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
+    window.open(`https://wa.me/5515996177546?text=${whatsappMessage}`, '_blank');
     
     // Fechar modal e mostrar sucesso
     closeMatriculaModal();
     showSuccessMessage('Solicitação enviada! Você será redirecionado para o WhatsApp.');
-    */
 }
 
 // ========== MÁSCARA DE CPF ==========
