@@ -267,16 +267,28 @@ h4 { font-size: 1.5rem; }
 
 /* ========== HEADER/NAVIGATION ========== */
 .header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
     background: transparent;
     backdrop-filter: blur(0px);
-    z-index: 9999;
+    z-index: 99999 !important;
     box-shadow: none;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-bottom: 1px solid transparent;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: auto;
+}
+
+#mainNavbar {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    width: 100% !important;
 }
 
 .header::before {
@@ -298,10 +310,189 @@ h4 { font-size: 1.5rem; }
 }
 
 .header.scrolled {
-    background: rgba(26, 26, 26, 0.95);
+    background: rgba(26, 26, 26, 0.7);
     backdrop-filter: blur(10px);
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
     border-bottom: 1px solid rgba(243, 120, 0, 0.1);
+}
+
+/* Navbar Bootstrap - Transparência no topo */
+#mainNavbar {
+    background: transparent !important;
+    transition: all 0.4s ease;
+    padding: 1.5rem 0;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+}
+
+.header.scrolled #mainNavbar {
+    background: rgba(26, 26, 26, 0.7) !important;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(243, 120, 0, 0.1);
+    padding: 1rem 0;
+}
+
+/* Navbar Brand (Logo) */
+.navbar-brand {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--branco) !important;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.header:not(.scrolled) .navbar-brand {
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.navbar-brand .logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    gap: 0;
+}
+
+.navbar-brand .logo-line1 {
+    font-size: 0.9em;
+    font-weight: 400;
+    color: var(--branco);
+    display: block;
+    margin-left: 30px;
+}
+
+.navbar-brand .logo-line2 {
+    font-size: 1.1em;
+    font-weight: 700;
+    color: var(--dourado);
+    display: block;
+    margin-left: 30px;
+}
+
+.navbar-brand .logo-img {
+    width: 80px;
+    height: auto;
+    transition: var(--transition);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+    margin-right: 0.75rem;
+}
+
+.header.scrolled .navbar-brand .logo-img {
+    filter: none;
+}
+
+.navbar-brand:hover .logo-img {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Nav Links */
+.navbar-nav .nav-link {
+    color: var(--branco) !important;
+    font-weight: 500;
+    padding: 0.5rem 0.75rem !important;
+    margin: 0 0.25rem;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    position: relative;
+}
+
+
+.navbar-nav .nav-link:not(.btn-nav)::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--dourado);
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link:not(.btn-nav):hover::after {
+    width: 100%;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--dourado) !important;
+}
+
+/* Botão Matricule-se - Estilo igual aos outros botões do site */
+.navbar-nav .nav-link.btn-nav {
+    font-family: 'Anton', sans-serif !important;
+    background: var(--gradient-gold) !important;
+    color: var(--preto-grafite) !important;
+    padding: 6px 21px !important;
+    border: none !important;
+    border-radius: 20px 8px !important;
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    box-shadow: var(--shadow-gold) !important;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin-left: 0.5rem;
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link.btn-nav::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+    z-index: -1;
+}
+
+.navbar-nav .nav-link.btn-nav:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+.navbar-nav .nav-link.btn-nav:hover {
+    transform: translateY(-3px) scale(1.05) !important;
+    box-shadow: 
+        0 10px 30px rgba(243, 120, 0, 0.5),
+        0 0 40px rgba(243, 120, 0, 0.3) !important;
+    animation: glow 2s ease-in-out infinite;
+    color: var(--preto-grafite) !important;
+    border-radius: 8px 20px !important;
+}
+
+/* Navbar Toggler (Hambúrguer) - Escondido em desktop, visível apenas em mobile */
+.navbar-toggler {
+    border: none !important;
+    padding: 0.5rem;
+    z-index: 10003;
+    /* Bootstrap controla o display - não forçar display block aqui */
+}
+
+.navbar-toggler:focus {
+    box-shadow: none;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(243, 120, 0, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e") !important;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 10px;
+}
+
+/* Garantir que o toggler esteja escondido em desktop (acima de 991.98px) */
+@media (min-width: 992px) {
+    .navbar-toggler {
+        display: none !important;
+    }
 }
 
 .navbar {
@@ -411,51 +602,7 @@ h4 { font-size: 1.5rem; }
     width: 100%;
 }
 
-/* Botão Hambúrguer - escondido em desktop */
-.mobile-toggle {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    z-index: 10003;
-    position: relative;
-    padding: 8px;
-    width: 40px;
-    height: 40px;
-    justify-content: center;
-    align-items: center;
-}
-
-.mobile-toggle span {
-    width: 28px;
-    height: 3px;
-    background: var(--dourado);
-    border-radius: 2px;
-    transition: all 0.3s ease;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    display: block;
-}
-
-.mobile-toggle.active span:nth-child(1) {
-    transform: rotate(45deg) translate(8px, 8px);
-    background: var(--branco);
-}
-
-.mobile-toggle.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.mobile-toggle.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(7px, -7px);
-    background: var(--branco);
-}
-
-/* Overlay do menu mobile - escondido em desktop */
-.menu-overlay {
-    display: none;
-}
+/* Estilos do menu mobile gerenciados pelo Bootstrap */
 
 /* ========== HERO SECTION ========== */
 .hero {
@@ -648,7 +795,6 @@ h4 { font-size: 1.5rem; }
     padding: 4rem 0;
     border-right: 3.5px solid var(--dourado);
     border-bottom: 3.5px solid var(--dourado);
-    border-bottom-right-radius: 100px;
     background: 
         linear-gradient(to bottom, var(--preto-grafite), #252525),
         repeating-linear-gradient(
@@ -792,29 +938,11 @@ h4 { font-size: 1.5rem; }
 }
 
 .sobre::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 180px;
-    background: linear-gradient(135deg, var(--dourado) 0%, #f37800);
-    clip-path: polygon(0 0, 100% 0, 80% 20%, 0 100%);
-    z-index: 2;
-    opacity: 0.9;
-    box-shadow: 0 0 30px rgba(243, 120, 0, 0.5);
+    display: none;
 }
 
 .sobre::after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 245px;
-    height: 175px;
-    background: #252525;
-    clip-path: polygon(0 0, 100% 0, 80% 20%, 0 100%);
-    z-index: 1;
+    display: none;
 }
 
 .sobre-wrapper {
@@ -953,23 +1081,12 @@ h4 { font-size: 1.5rem; }
     background: var(--preto-grafite);
     position: relative;
     border-right: 3.5px solid #f37800;
-    border-bottom-right-radius: 100px;
     border-bottom: 3.5px solid #f37800;
 }
 
 /* Chanfrado laranja direito */
 .modalidades::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 250px;
-    height: 180px;
-    background: linear-gradient(135deg, var(--dourado) 0%, #f37800);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 20%);
-    z-index: 2;
-    opacity: 0.9;
-    box-shadow: 0 0 30px rgba(243, 120, 0, 0.5);
+    display: none;
 }
 
 .modalidades .container {
@@ -1150,29 +1267,11 @@ h4 { font-size: 1.5rem; }
 }
 
 .planos::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 250px;
-    height: 180px;
-    background: linear-gradient(135deg, var(--dourado) 0%, #f37800);
-    clip-path: polygon(0 0, 100% 0, 80% 20%, 0 100%);
-    z-index: 2;
-    opacity: 0.9;
-    box-shadow: 0 0 30px rgba(243, 120, 0, 0.5);
+    display: none;
 }
 
 .planos::after {
-    content: '';
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    width: 245px;
-    height: 175px;
-    background: #252525;
-    clip-path: polygon(0 0, 100% 0, 80% 20%, 0 100%);
-    z-index: 1;
+    display: none;
 }
 
 /* Planos Resumo - Versão Simplificada */
@@ -1631,17 +1730,7 @@ h4 { font-size: 1.5rem; }
 
 /* Chanfrado laranja direito */
 .horarios::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 250px;
-    height: 180px;
-    background: linear-gradient(135deg, var(--dourado) 0%, #f37800);
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 20% 20%);
-    z-index: 2;
-    opacity: 0.9;
-    box-shadow: 0 0 30px rgba(243, 120, 0, 0.5);
+    display: none;
 }
 
 .horarios .container {
@@ -2687,15 +2776,139 @@ h4 { font-size: 1.5rem; }
     }
 }
 
-@media (max-width: 768px) {
-    .logo a {
-        font-size: 1.2rem;
+@media (max-width: 991.98px) {
+    /* Garantir que o header esteja sempre visível */
+    .header {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        z-index: 99999 !important;
+        height: auto !important;
+        min-height: 60px !important;
+        transform: none !important;
+    }
+    
+    #mainNavbar {
+        display: flex !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        width: 100% !important;
+        flex-wrap: wrap !important;
+    }
+    
+    #mainNavbar .container {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .navbar-brand {
+        order: 1;
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .navbar-toggler {
+        order: 2;
+    }
+    
+    /* Garantir que o botão toggler esteja visível apenas em mobile (abaixo de 992px) */
+    .navbar-toggler {
+        display: block !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+    
+    .navbar-brand {
+        font-size: 1.5rem;
+        display: flex !important;
+        visibility: visible !important;
+        align-items: center;
+        flex: 1;
+    }
+    
+    .navbar-brand .logo-text {
+        margin-left: 0;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+    }
+    
+    .navbar-brand .logo-line1,
+    .navbar-brand .logo-line2 {
+        margin-left: 0;
+        text-align: center;
     }
 
-    .logo-img {
+    .navbar-brand .logo-img {
         width: 70px;
         height: auto;
-        margin-right: 10px;
+        display: block !important;
+    }
+    
+    #mainNavbar .container {
+        justify-content: center !important;
+    }
+    
+    .header.scrolled,
+    .header {
+        background: rgba(26, 26, 26, 0.98) !important;
+        backdrop-filter: blur(10px);
+        z-index: 99999 !important;
+    }
+    
+    /* Menu Collapse do Bootstrap em mobile */
+    .navbar-collapse {
+        background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+        margin-top: 1rem;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 2px solid rgba(243, 120, 0, 0.2);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+}
+
+@media (max-width: 768px) {
+    #mainNavbar .container {
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+    }
+    
+    .navbar-brand {
+        font-size: 1.5rem;
+        align-items: center;
+        flex: 1;
+        order: 1;
+    }
+    
+    .navbar-brand .logo-text {
+        margin-left: 0;
+        align-items: center;
+        text-align: center;
+        flex: 1;
+    }
+    
+    .navbar-brand .logo-line1,
+    .navbar-brand .logo-line2 {
+        margin-left: 0;
+        text-align: center;
+    }
+
+    .navbar-brand .logo-img {
+        width: 70px;
+        height: auto;
+    }
+    
+    .navbar-toggler {
+        order: 2;
     }
     
     .header.scrolled,
@@ -2705,131 +2918,52 @@ h4 { font-size: 1.5rem; }
         z-index: 10001;
     }
     
-    /* Menu Hambúrguer em mobile */
-    .nav-wrapper {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
-        gap: 1rem;
-    }
-    
-    /* Botão hambúrguer visível */
-    .mobile-toggle {
-        display: flex !important;
-        z-index: 10003;
-    }
-    
-    /* Overlay escuro atrás do menu */
-    .menu-overlay {
-        display: block;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        min-height: 100vh;
-        background: rgba(0, 0, 0, 0.85);
-        opacity: 0;
-        visibility: hidden;
-        transition: opacity 0.4s ease, visibility 0.4s ease;
-        z-index: 9999;
-        pointer-events: none;
-    }
-    
-    .menu-overlay.active {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-    
-    /* Menu lateral que desliza da direita */
-    .nav-menu {
-        display: flex !important;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 85%;
-        max-width: 350px;
-        height: 100vh;
+    /* Menu Collapse do Bootstrap em mobile */
+    .navbar-collapse {
         background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: stretch;
-        justify-content: flex-start;
-        padding: 100px 1.5rem 2rem;
-        gap: 0.75rem;
-        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        z-index: 10000;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.9);
-        border-left: 4px solid var(--dourado);
+        margin-top: 1rem;
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 2px solid rgba(243, 120, 0, 0.2);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
     
-    .nav-menu.active {
-        right: 0 !important;
+    .navbar-nav {
+        gap: 0.5rem;
     }
     
-    .nav-menu li {
+    .navbar-nav .nav-item {
         width: 100%;
-        list-style: none;
-        margin: 0;
-        opacity: 0;
-        transform: translateX(30px);
-        transition: opacity 0.3s ease, transform 0.3s ease;
     }
     
-    .nav-menu.active li {
-        opacity: 1;
-        transform: translateX(0);
-    }
-    
-    .nav-menu.active li:nth-child(1) { transition-delay: 0.1s; }
-    .nav-menu.active li:nth-child(2) { transition-delay: 0.15s; }
-    .nav-menu.active li:nth-child(3) { transition-delay: 0.2s; }
-    .nav-menu.active li:nth-child(4) { transition-delay: 0.25s; }
-    .nav-menu.active li:nth-child(5) { transition-delay: 0.3s; }
-    .nav-menu.active li:nth-child(6) { transition-delay: 0.35s; }
-    
-    .nav-menu a {
-        font-size: 1.1rem;
-        padding: 1rem 1.25rem;
+    .navbar-nav .nav-link {
         width: 100%;
         text-align: left;
+        padding: 1rem 1.25rem !important;
         border-radius: 8px;
-        transition: all 0.3s ease;
-        border: 2px solid transparent;
-        display: block;
         background: rgba(255, 255, 255, 0.05);
-        color: var(--branco);
+        margin: 0 !important;
+        margin-bottom: 0.5rem;
     }
     
-    .nav-menu a:not(.btn-nav):after {
+    .navbar-nav .nav-link:not(.btn-nav)::after {
         display: none;
     }
     
-    .nav-menu a:not(.btn-nav):hover,
-    .nav-menu a:not(.btn-nav).active {
+    .navbar-nav .nav-link:not(.btn-nav):hover {
         background: rgba(243, 120, 0, 0.2);
-        border-color: var(--dourado);
+        border: 2px solid var(--dourado);
         transform: translateX(5px);
     }
     
-    .btn-nav {
-        background: linear-gradient(135deg, var(--dourado) 0%, #ff9933 100%) !important;
-        color: var(--preto-grafite) !important;
-        font-weight: 700;
-        box-shadow: 0 5px 20px rgba(243, 120, 0, 0.4);
-        border: 2px solid var(--dourado) !important;
+    .navbar-nav .nav-link.btn-nav {
         text-align: center !important;
-        font-size: 1rem;
-        padding: 1rem 1.5rem;
         margin-top: 0.5rem;
-    }
-    
-    .btn-nav:hover {
-        transform: translateX(0) scale(1.02) !important;
-        box-shadow: 0 8px 30px rgba(243, 120, 0, 0.6);
+        width: 100%;
+        font-family: 'Anton', sans-serif !important;
+        text-transform: uppercase !important;
+        letter-spacing: 1px !important;
+        border-radius: 50px !important;
     }
     
     .hero-buttons {
@@ -3072,25 +3206,7 @@ h4 { font-size: 1.5rem; }
     }
     
     /* Ajustar chanfrado laranja no mobile */
-    .planos::before {
-        width: 150px;
-        height: 110px;
-    }
-    
-    .planos::after {
-        width: 145px;
-        height: 105px;
-    }
-    
-    .sobre::before {
-        width: 150px;
-        height: 110px;
-    }
-    
-    .sobre::after {
-        width: 145px;
-        height: 105px;
-    }
+    /* Chanfrados removidos */
 }
 
 /* ========== LOADING ANIMATION ========== */
@@ -3240,11 +3356,7 @@ h4 { font-size: 1.5rem; }
 
 @media (max-width: 480px) {
     /* Chanfrados menores no mobile */
-    .modalidades::after,
-    .horarios::after {
-        width: 150px;
-        height: 110px;
-    }
+    /* Chanfrados removidos */
     
     .contato::before {
         width: 150px;

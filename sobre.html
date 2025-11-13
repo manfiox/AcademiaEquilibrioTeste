@@ -18,6 +18,9 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- AOS Animation -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -27,31 +30,40 @@
 </head>
 
 <body>
-    <!-- Header/Navigation -->
+    <!-- Header/Navigation Bootstrap -->
     <header class="header">
-        <nav class="navbar">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNavbar">
             <div class="container">
-                <div class="nav-wrapper">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="assets/images/logo.svg" alt="Logo Academia Equilíbrio" class="logo-img">
-                            <span>Academia <strong>Equilíbrio</strong></span>
-                        </a>
-                    </div>
-
-                    <button class="mobile-toggle" aria-label="Menu">
-                        <span></span>
-                        <span></span>
-                        <span></span>
-                    </button>
-
-                    <ul class="nav-menu">
-                        <li><a href="index.html#inicio">Início</a></li>
-                        <li><a href="sobre.html" class="active">Sobre</a></li>
-                        <li><a href="modalidades.html">Modalidades</a></li>
-                        <li><a href="planos.html">Planos</a></li>
-                        <li><a href="index.html#contato">Contato</a></li>
-                        <li><a href="#" onclick="openMatriculaModal(); return false;" class="btn-nav">Matricule-se</a>
+                <a class="navbar-brand d-flex align-items-center" href="index.html#inicio">
+                    <img src="assets/images/logo.svg" alt="Logo Academia Equilíbrio" class="logo-img me-3">
+                    <span class="logo-text">
+                        <span class="logo-line1">Academia</span>
+                        <strong class="logo-line2">Equilíbrio</strong>
+                    </span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto align-items-center">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#inicio">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="sobre.html">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="modalidades.html">Modalidades</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="planos.html">Planos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contato">Contato</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link btn-nav" href="#" onclick="openMatriculaModal(); return false;">Matricule-se</a>
                         </li>
                     </ul>
                 </div>
@@ -68,7 +80,7 @@
                 <div class="breadcrumb" data-aos="fade-down">
                     <a href="index.html">Início</a> / <span>Sobre Nós</span>
                 </div>
-                <h1 data-aos="fade-up">Nossa História</h1>
+                <h1 data-aos="fade-up">Sobre Nós</h1>
                 <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100">
                     Desde 2015 transformando vidas com saúde, força e equilíbrio.
                 </p>
@@ -748,6 +760,8 @@
         </div>
     </div>
 
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="assets/js/script.js"></script>
     <script>

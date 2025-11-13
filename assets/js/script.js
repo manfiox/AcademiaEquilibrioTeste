@@ -35,83 +35,38 @@ document.addEventListener('DOMContentLoaded', function() {
     initExperimentalPopup();
 });
 
-// ========== MOBILE MENU ==========
+// ========== MOBILE MENU (Bootstrap) ==========
 function initMobileMenu() {
-    const mobileToggle = document.getElementById('mobileToggle');
-    const navMenu = document.getElementById('navMenu');
-    const menuOverlay = document.getElementById('menuOverlay');
-    const navLinks = document.querySelectorAll('.nav-menu a');
+    const navbarCollapse = document.getElementById('navbarNav');
+    const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     
-    if (!mobileToggle || !navMenu) {
-        console.error('Elementos do menu não encontrados!');
+    if (!navbarCollapse) {
+        console.error('Menu Bootstrap não encontrado!');
         return;
     }
     
-    // Função para abrir o menu
-    function openMenu() {
-        navMenu.classList.add('active');
-        mobileToggle.classList.add('active');
-        if (menuOverlay) {
-            menuOverlay.classList.add('active');
-        }
-        lockScroll('mobile-menu');
-    }
-    
-    // Função para fechar o menu
-    function closeMenu() {
-        navMenu.classList.remove('active');
-        mobileToggle.classList.remove('active');
-        if (menuOverlay) {
-            menuOverlay.classList.remove('active');
-        }
-        unlockScroll('mobile-menu');
-    }
-    
-    // Toggle do menu ao clicar no botão hambúrguer
-    mobileToggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        if (navMenu.classList.contains('active')) {
-            closeMenu();
-        } else {
-            openMenu();
-        }
-    });
-    
-    // Fechar menu ao clicar no overlay
-    if (menuOverlay) {
-        menuOverlay.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            closeMenu();
-        });
-    }
-    
-    // Fechar menu ao clicar em um link
+    // Fechar menu ao clicar em um link (mobile)
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
-            if (navMenu.classList.contains('active')) {
-                closeMenu();
+            if (window.innerWidth < 992) {
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse) {
+                    bsCollapse.hide();
+                }
             }
         });
     });
     
-    // Fechar menu ao redimensionar para desktop
-    window.addEventListener('resize', function() {
-        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
-            closeMenu();
-        }
+    // Bloquear scroll quando menu está aberto
+    navbarCollapse.addEventListener('show.bs.collapse', function() {
+        lockScroll('mobile-menu');
     });
     
-    // Fechar menu ao pressionar ESC
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-            closeMenu();
-        }
+    navbarCollapse.addEventListener('hide.bs.collapse', function() {
+        unlockScroll('mobile-menu');
     });
     
-    console.log('Menu hambúrguer inicializado com sucesso!');
+    console.log('Menu Bootstrap inicializado com sucesso!');
 }
 
 // ========== SMOOTH SCROLL ==========
