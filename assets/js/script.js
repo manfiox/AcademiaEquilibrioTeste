@@ -126,61 +126,37 @@ function closeExperimentalModal() {
     unlockScroll('experimental');
 }
 
-// ========== MODAL MATRÍCULA ==========
+// ========== MODAL DE MATRÍCULA ==========
 function openMatriculaModal() {
     const modal = document.getElementById('matriculaModal');
-    modal.style.display = 'block';
-    // Não bloqueia scroll do body, pois o modal tem scroll interno
-    document.body.style.overflow = 'hidden';
+    if (modal) {
+        modal.style.display = 'block';
+        lockScroll('matricula');
+        // Fechar menu mobile se estiver aberto
+        if (window.innerWidth < 992) {
+            const navbarCollapse = document.getElementById('navbarNav');
+            const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+            if (bsCollapse) {
+                bsCollapse.hide();
+            }
+        }
+    }
 }
 
 function closeMatriculaModal() {
     const modal = document.getElementById('matriculaModal');
-    modal.style.display = 'none';
-    // Restaura scroll do body
-    document.body.style.overflow = '';
-}
-
-function enviarMatricula(event) {
-    event.preventDefault();
-    
-    const nome = document.getElementById('nomeMatricula').value;
-    const email = document.getElementById('emailMatricula').value;
-    const planoSelecionado = document.querySelector('input[name="plano"]:checked');
-    
-    if (!planoSelecionado) {
-        alert('Por favor, selecione um plano!');
-        return;
+    if (modal) {
+        modal.style.display = 'none';
+        unlockScroll('matricula');
+        // Limpar formulário
+        const form = document.getElementById('matriculaForm');
+        if (form) {
+            form.reset();
+        }
     }
-    
-    const plano = planoSelecionado.value;
-    
-    // Montar mensagem para WhatsApp
-    const mensagem = `
-🏋️‍♂️ *NOVA MATRÍCULA - Academia Equilíbrio*
-
-👤 *Nome:* ${nome}
-📧 *E-mail:* ${email}
-💳 *Plano Escolhido:* ${plano}
-
-_Mensagem enviada através do site._
-    `.trim();
-    
-    // Número do WhatsApp (formato internacional sem + e sem espaços)
-    const numeroWhatsApp = '5515996177546';
-    
-    // Criar URL do WhatsApp
-    const urlWhatsApp = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensagem)}`;
-    
-    // Abrir WhatsApp
-    window.open(urlWhatsApp, '_blank');
-    
-    // Fechar modal
-    closeMatriculaModal();
-    
-    // Limpar formulário
-    document.getElementById('formMatricula').reset();
 }
+
+
 
 // ========== MODAL MODALIDADE ==========
 const modalidadesInfo = {
@@ -293,19 +269,17 @@ function closeModalidadeModal() {
 // ========== FECHAR MODALS AO CLICAR FORA ==========
 window.addEventListener('click', function(event) {
     const modals = [
-        {id: 'experimentalModal', lock: 'experimental'},
-        {id: 'matriculaModal', lock: null}, // Modal de matrícula não usa lockScroll
-        {id: 'modalidadeModal', lock: 'modalidade'}
+        {id: 'experimentalModal', lock: 'experimental', display: 'block'},
+        {id: 'modalidadeModal', lock: 'modalidade', display: 'block'},
+        {id: 'matriculaModal', lock: 'matricula', display: 'block'}
     ];
     
-    modals.forEach(({id, lock}) => {
+    modals.forEach(({id, lock, display}) => {
         const modal = document.getElementById(id);
-        if (event.target === modal) {
+        if (modal && event.target === modal) {
             modal.style.display = 'none';
             if (lock) {
                 unlockScroll(lock);
-            } else if (id === 'matriculaModal') {
-                // Modal de matrícula não bloqueia scroll, então não precisa restaurar
             }
         }
     });
@@ -344,12 +318,20 @@ function initFormValidation() {
         });
     }
     
-    // Formulário Matrícula
+    // Formulário de Matrícula
     const matriculaForm = document.getElementById('matriculaForm');
     if (matriculaForm) {
         matriculaForm.addEventListener('submit', function(e) {
             e.preventDefault();
             handleMatriculaForm();
+        });
+    }
+    
+    // Máscara de CPF
+    const cpfInput = document.getElementById('matricula-cpf');
+    if (cpfInput) {
+        cpfInput.addEventListener('input', function(e) {
+            maskCPF(e.target);
         });
     }
 }
@@ -396,37 +378,100 @@ function handleExperimentalForm() {
     document.getElementById('experimentalForm').reset();
 }
 
-// ========== PROCESSAR FORMULÁRIO MATRÍCULA ==========
+// ========== PROCESSAR FORMULÁRIO DE MATRÍCULA ==========
 function handleMatriculaForm() {
-    const nome = document.getElementById('mat-nome').value;
-    const email = document.getElementById('mat-email').value;
+    const nome = document.getElementById('matricula-nome').value.trim();
+    const cpf = document.getElementById('matricula-cpf').value.trim();
     const planoSelecionado = document.querySelector('input[name="plano"]:checked');
     
-    // Validar se um plano foi selecionado
+    // Validações
+    if (!nome || nome.length < 3) {
+        showErrorMessage('Por favor, digite um nome válido (mínimo 3 caracteres).');
+        return;
+    }
+    
+    if (!cpf || cpf.length < 14) {
+        showErrorMessage('Por favor, digite um CPF válido.');
+        return;
+    }
+    
     if (!planoSelecionado) {
-        alert('Por favor, selecione um plano!');
+        showErrorMessage('Por favor, selecione um plano.');
         return;
     }
     
     const plano = planoSelecionado.value;
     
     // Criar mensagem para WhatsApp
-    const whatsappMessage = `✅ SOLICITAÇÃO DE MATRÍCULA%0A%0A` +
-                           `Nome: ${nome}%0A` +
-                           `E-mail: ${email}%0A` +
-                           `Plano: ${plano}%0A%0A` +
-                           `Gostaria de finalizar minha matrícula!`;
+    const whatsappMessage = `Olá, vim pelo site e gostaria de dar início a minha matrícula...%0A%0A%0A%0A` +
+                           `*SOLICITAÇÃO DE MATRÍCULA*%0A%0A` +
+                           `NOME: ${nome}%0A%0A` +
+                           `CPF: ${cpf}%0A%0A` +
+                           `PLANO SELECIONADO: ${plano}`;
     
     // Redirecionar para WhatsApp
-    window.open(`https://wa.me/5515996177546?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/5515996177546?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     
     // Fechar modal e mostrar sucesso
     closeMatriculaModal();
-    showSuccessMessage('Matrícula solicitada! Você será redirecionado para o WhatsApp.');
-    
-    // Limpar formulário
-    document.getElementById('matriculaForm').reset();
+    showSuccessMessage('Solicitação enviada! Você será redirecionado para o WhatsApp.');
 }
+
+// ========== MÁSCARA DE CPF ==========
+function maskCPF(input) {
+    let value = input.value.replace(/\D/g, '');
+    
+    if (value.length <= 11) {
+        if (value.length <= 3) {
+            input.value = value;
+        } else if (value.length <= 6) {
+            input.value = value.replace(/(\d{3})(\d+)/, '$1.$2');
+        } else if (value.length <= 9) {
+            input.value = value.replace(/(\d{3})(\d{3})(\d+)/, '$1.$2.$3');
+        } else {
+            input.value = value.replace(/(\d{3})(\d{3})(\d{3})(\d+)/, '$1.$2.$3-$4');
+        }
+    } else {
+        input.value = value.substring(0, 11).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4');
+    }
+}
+
+// ========== MENSAGEM DE ERRO ==========
+function showErrorMessage(message) {
+    const notification = document.createElement('div');
+    notification.style.cssText = `
+        position: fixed;
+        top: 100px;
+        right: 20px;
+        background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+        color: #FFFFFF;
+        padding: 1.5rem 2rem;
+        border-radius: 15px;
+        box-shadow: 0 8px 32px rgba(220, 53, 69, 0.4);
+        z-index: 10001;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        animation: slideIn 0.5s ease;
+        max-width: 350px;
+    `;
+    
+    notification.innerHTML = `
+        <i class="fas fa-exclamation-circle" style="font-size: 1.5rem;"></i>
+        <span>${message}</span>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.animation = 'slideOut 0.5s ease';
+        setTimeout(() => {
+            notification.remove();
+        }, 500);
+    }, 4000);
+}
+
 
 // ========== MENSAGEM DE SUCESSO ==========
 function showSuccessMessage(message) {

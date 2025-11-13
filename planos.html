@@ -127,9 +127,9 @@
                             <li><i class="fas fa-user-check"></i> Acompanhamento profissional</li>
                         </ul>
                     </div>
-                    <button class="btn-plano-premium" onclick="openMatriculaModal()">
+                    <a href="planos.html" class="btn-plano-premium">
                         <i class="fas fa-star"></i> Quero esse plano
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Plano Bimestral -->
@@ -163,9 +163,9 @@
                             <li><i class="fas fa-user-check"></i> Acompanhamento profissional</li>
                         </ul>
                     </div>
-                    <button class="btn-plano-premium" onclick="openMatriculaModal()">
+                    <a href="planos.html" class="btn-plano-premium">
                         <i class="fas fa-star"></i> Quero esse plano
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Plano Trimestral - DESTAQUE -->
@@ -202,9 +202,9 @@
                             <li><i class="fas fa-chart-line"></i> Reavaliação física trimestral</li>
                         </ul>
                     </div>
-                    <button class="btn-plano-premium destaque" onclick="openMatriculaModal()">
+                    <a href="planos.html" class="btn-plano-premium destaque">
                         <i class="fas fa-crown"></i> Quero esse plano
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Plano Semestral -->
@@ -242,9 +242,9 @@
                             <li><i class="fas fa-gift"></i> 1 sessão de fisioterapia grátis</li>
                         </ul>
                     </div>
-                    <button class="btn-plano-premium" onclick="openMatriculaModal()">
+                    <a href="planos.html" class="btn-plano-premium">
                         <i class="fas fa-star"></i> Quero esse plano
-                    </button>
+                    </a>
                 </div>
 
             </div>
@@ -331,120 +331,114 @@
 
     <!-- Modal de Matrícula -->
     <div id="matriculaModal" class="modal">
-        <div class="modal-content" data-aos="zoom-in">
-            <span class="close" onclick="closeMatriculaModal()">&times;</span>
-            <div class="modal-header">
-                <i class="fas fa-clipboard-check"></i>
+        <div class="modal-content modal-matricula" data-aos="zoom-in">
+            <div class="modal-matricula-header">
+                <span class="close" onclick="closeMatriculaModal()">&times;</span>
+                <div class="modal-matricula-icon">
+                    <i class="fas fa-user-plus"></i>
+                </div>
                 <h2>Matricule-se Agora</h2>
+                <p>Preencha seus dados e escolha o plano ideal para você</p>
             </div>
-            <form id="matriculaForm">
-                <!-- Campos de Dados Pessoais - Lado a Lado -->
-                <div class="form-row-matricula">
-                    <div class="form-group">
-                        <label for="mat-nome">Nome Completo</label>
-                        <input type="text" id="mat-nome" required>
+            <div class="modal-matricula-body">
+                <form id="matriculaForm">
+                    <!-- Dados Pessoais -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Dados Pessoais</h3>
+                        <div class="form-group-matricula">
+                            <label for="matricula-nome">Nome Completo *</label>
+                            <input type="text" id="matricula-nome" name="nome" placeholder="Digite seu nome completo" required>
+                        </div>
+                        <div class="form-group-matricula">
+                            <label for="matricula-cpf">CPF *</label>
+                            <input type="text" id="matricula-cpf" name="cpf" placeholder="000.000.000-00" maxlength="14" required>
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="mat-email">E-mail</label>
-                        <input type="email" id="mat-email" required placeholder="seu@email.com">
+
+                    <!-- Seleção de Plano -->
+                    <div class="form-section">
+                        <h3><i class="fas fa-tag"></i> Escolha seu Plano</h3>
+                        <div class="planos-cards-modal">
+                            <!-- Plano Mensal -->
+                            <label class="plano-card-modal">
+                                <input type="radio" name="plano" value="Mensal" required>
+                                <div class="plano-card-content">
+                                    <div class="badge-popular-modal">Popular</div>
+                                    <div class="plano-icon-modal">
+                                        <i class="fas fa-calendar-day"></i>
+                                    </div>
+                                    <h4>Mensal</h4>
+                                    <div class="preco-modal">
+                                        <span class="valor">R$ 110<sup>,00</sup></span>
+                                        <span class="periodo">por mês</span>
+                                    </div>
+                                </div>
+                            </label>
+
+                            <!-- Plano Bimestral -->
+                            <label class="plano-card-modal">
+                                <input type="radio" name="plano" value="Bimestral" required>
+                                <div class="plano-card-content">
+                                    <div class="plano-icon-modal">
+                                        <i class="fas fa-calendar-week"></i>
+                                    </div>
+                                    <h4>Bimestral</h4>
+                                    <div class="preco-modal">
+                                        <span class="valor">2x R$ 100<sup>,00</sup></span>
+                                        <span class="periodo">ou R$ 180,00 à vista</span>
+                                    </div>
+                                    <span class="badge-economia">Economia de R$ 20</span>
+                                </div>
+                            </label>
+
+                            <!-- Plano Trimestral -->
+                            <label class="plano-card-modal">
+                                <input type="radio" name="plano" value="Trimestral" required>
+                                <div class="plano-card-content">
+                                    <div class="badge-melhor-modal">Melhor Custo-Benefício</div>
+                                    <div class="plano-icon-modal">
+                                        <i class="fas fa-calendar-alt"></i>
+                                    </div>
+                                    <h4>Trimestral</h4>
+                                    <div class="preco-modal">
+                                        <span class="valor">3x R$ 90<sup>,00</sup></span>
+                                        <span class="periodo">ou R$ 240,00 à vista</span>
+                                    </div>
+                                    <span class="badge-economia">Economia de R$ 90</span>
+                                </div>
+                            </label>
+
+                            <!-- Plano Semestral -->
+                            <label class="plano-card-modal">
+                                <input type="radio" name="plano" value="Semestral" required>
+                                <div class="plano-card-content">
+                                    <div class="plano-icon-modal">
+                                        <i class="fas fa-calendar"></i>
+                                    </div>
+                                    <h4>Semestral</h4>
+                                    <div class="preco-modal">
+                                        <span class="valor">6x R$ 80<sup>,00</sup></span>
+                                        <span class="periodo">ou R$ 430,00 à vista</span>
+                                    </div>
+                                    <span class="badge-economia">Economia de R$ 230</span>
+                                </div>
+                            </label>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Seleção de Plano em Cards -->
-                <div class="planos-section-matricula">
-                    <h3><i class="fas fa-credit-card"></i> Escolha seu Plano</h3>
-                    <div class="planos-grid-matricula">
-
-                        <!-- Plano Mensal -->
-                        <label class="plano-card-matricula">
-                            <input type="radio" name="plano" value="Mensal - R$ 110,00" required>
-                            <div class="plano-card-content-matricula">
-                                <div class="plano-badge">MENSAL</div>
-                                <div class="plano-price">
-                                    <span class="currency">R$</span>
-                                    <span class="value">110</span>
-                                    <span class="period">/mês</span>
-                                </div>
-                                <p class="plano-description">Flexibilidade total</p>
-                                <ul class="plano-features">
-                                    <li><i class="fas fa-check"></i> Sem fidelidade</li>
-                                    <li><i class="fas fa-check"></i> Cancele quando quiser</li>
-                                </ul>
-                            </div>
-                        </label>
-
-                        <!-- Plano Bimestral -->
-                        <label class="plano-card-matricula">
-                            <input type="radio" name="plano" value="Bimestral - 2x R$ 100,00 ou R$ 180,00 à vista"
-                                required>
-                            <div class="plano-card-content-matricula">
-                                <div class="plano-badge">BIMESTRAL</div>
-                                <div class="plano-price">
-                                    <span class="currency">R$</span>
-                                    <span class="value">100</span>
-                                    <span class="period">/mês</span>
-                                </div>
-                                <p class="plano-description">2x R$ 100 ou R$ 180 à vista</p>
-                                <ul class="plano-features">
-                                    <li><i class="fas fa-check"></i> Economia de 9%</li>
-                                    <li><i class="fas fa-check"></i> 2 meses de treino</li>
-                                </ul>
-                            </div>
-                        </label>
-
-                        <!-- Plano Trimestral -->
-                        <label class="plano-card-matricula">
-                            <input type="radio" name="plano" value="Trimestral - 3x R$ 90,00 ou R$ 240,00 à vista"
-                                required>
-                            <div class="plano-card-content-matricula">
-                                <div class="plano-badge popular">TRIMESTRAL</div>
-                                <div class="plano-price">
-                                    <span class="currency">R$</span>
-                                    <span class="value">90</span>
-                                    <span class="period">/mês</span>
-                                </div>
-                                <p class="plano-description">3x R$ 90 ou R$ 240 à vista</p>
-                                <ul class="plano-features">
-                                    <li><i class="fas fa-check"></i> Economia de 18%</li>
-                                    <li><i class="fas fa-check"></i> Mais escolhido</li>
-                                </ul>
-                                <span class="badge-popular">MAIS POPULAR</span>
-                            </div>
-                        </label>
-
-                        <!-- Plano Semestral -->
-                        <label class="plano-card-matricula">
-                            <input type="radio" name="plano" value="Semestral - 6x R$ 80,00 ou R$ 430,00 à vista"
-                                required>
-                            <div class="plano-card-content-matricula">
-                                <div class="plano-badge melhor">SEMESTRAL</div>
-                                <div class="plano-price">
-                                    <span class="currency">R$</span>
-                                    <span class="value">80</span>
-                                    <span class="period">/mês</span>
-                                </div>
-                                <p class="plano-description">6x R$ 80 ou R$ 430 à vista</p>
-                                <ul class="plano-features">
-                                    <li><i class="fas fa-check"></i> Economia de 27%</li>
-                                    <li><i class="fas fa-check"></i> Melhor custo-benefício</li>
-                                </ul>
-                                <span class="badge-melhor">MELHOR OFERTA</span>
-                            </div>
-                        </label>
-
+                    <!-- Botões de Ação -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-confirmar-matricula">
+                            <i class="fas fa-check-circle"></i>
+                            <span>Confirmar Matrícula</span>
+                        </button>
+                        <a href="planos.html" class="btn-ver-detalhes">
+                            <i class="fas fa-info-circle"></i>
+                            <span>Ver detalhes sobre planos</span>
+                        </a>
                     </div>
-                </div>
-
-                <!-- Botões de Ação -->
-                <div class="form-actions-matricula">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fab fa-whatsapp"></i> Finalizar no WhatsApp
-                    </button>
-                    <a href="planos.html" class="btn btn-secondary">
-                        <i class="fas fa-info-circle"></i> Ver Detalhes dos Planos
-                    </a>
-                </div>
-            </form>
+                </form>
+            </div>
         </div>
     </div>
 
