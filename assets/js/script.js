@@ -3,6 +3,21 @@
    Desenvolvido por Caio Manfio
    ======================================== */
 
+// ========== GERENCIAMENTO DE SCROLL ==========
+let scrollLocks = new Set();
+
+function lockScroll(lockId) {
+    scrollLocks.add(lockId);
+    document.body.style.overflow = 'hidden';
+}
+
+function unlockScroll(lockId) {
+    scrollLocks.delete(lockId);
+    if (scrollLocks.size === 0) {
+        document.body.style.overflow = '';
+    }
+}
+
 // ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', function() {
     // Inicializar AOS (Animate On Scroll)
@@ -22,38 +37,81 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ========== MOBILE MENU ==========
 function initMobileMenu() {
-    const mobileToggle = document.querySelector('.mobile-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    const menuOverlay = document.getElementById('menuOverlay');
     const navLinks = document.querySelectorAll('.nav-menu a');
     
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-            
-            // Animar ícone hambúrguer
-            const spans = mobileToggle.querySelectorAll('span');
-            if (navMenu.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
+    if (!mobileToggle || !navMenu) {
+        console.error('Elementos do menu não encontrados!');
+        return;
+    }
+    
+    // Função para abrir o menu
+    function openMenu() {
+        navMenu.classList.add('active');
+        mobileToggle.classList.add('active');
+        if (menuOverlay) {
+            menuOverlay.classList.add('active');
+        }
+        lockScroll('mobile-menu');
+    }
+    
+    // Função para fechar o menu
+    function closeMenu() {
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        if (menuOverlay) {
+            menuOverlay.classList.remove('active');
+        }
+        unlockScroll('mobile-menu');
+    }
+    
+    // Toggle do menu ao clicar no botão hambúrguer
+    mobileToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
         
-        // Fechar menu ao clicar em um link
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                const spans = mobileToggle.querySelectorAll('span');
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            });
+        if (navMenu.classList.contains('active')) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
+    });
+    
+    // Fechar menu ao clicar no overlay
+    if (menuOverlay) {
+        menuOverlay.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            closeMenu();
         });
     }
+    
+    // Fechar menu ao clicar em um link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (navMenu.classList.contains('active')) {
+                closeMenu();
+            }
+        });
+    });
+    
+    // Fechar menu ao redimensionar para desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+    
+    // Fechar menu ao pressionar ESC
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+            closeMenu();
+        }
+    });
+    
+    console.log('Menu hambúrguer inicializado com sucesso!');
 }
 
 // ========== SMOOTH SCROLL ==========
@@ -104,26 +162,26 @@ function initHeaderScroll() {
 function openExperimentalModal() {
     const modal = document.getElementById('experimentalModal');
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    lockScroll('experimental');
 }
 
 function closeExperimentalModal() {
     const modal = document.getElementById('experimentalModal');
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    unlockScroll('experimental');
 }
 
 // ========== MODAL MATRÍCULA ==========
 function openMatriculaModal() {
     const modal = document.getElementById('matriculaModal');
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    lockScroll('matricula');
 }
 
 function closeMatriculaModal() {
     const modal = document.getElementById('matriculaModal');
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    unlockScroll('matricula');
 }
 
 function enviarMatricula(event) {
@@ -265,25 +323,29 @@ function openModalidadeModal(modalidade) {
         `;
         
         modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
+        lockScroll('modalidade');
     }
 }
 
 function closeModalidadeModal() {
     const modal = document.getElementById('modalidadeModal');
     modal.style.display = 'none';
-    document.body.style.overflow = 'auto';
+    unlockScroll('modalidade');
 }
 
 // ========== FECHAR MODALS AO CLICAR FORA ==========
 window.addEventListener('click', function(event) {
-    const modals = ['experimentalModal', 'matriculaModal', 'modalidadeModal'];
+    const modals = [
+        {id: 'experimentalModal', lock: 'experimental'},
+        {id: 'matriculaModal', lock: 'matricula'},
+        {id: 'modalidadeModal', lock: 'modalidade'}
+    ];
     
-    modals.forEach(modalId => {
-        const modal = document.getElementById(modalId);
+    modals.forEach(({id, lock}) => {
+        const modal = document.getElementById(id);
         if (event.target === modal) {
             modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
+            unlockScroll(lock);
         }
     });
 });
@@ -641,7 +703,7 @@ function showPopupAulaExperimental() {
     const popup = document.getElementById('popupAulaExperimental');
     if (popup && popup.style.display !== 'flex') {
         popup.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Bloqueia scroll
+        lockScroll('popup');
     }
 }
 
@@ -656,7 +718,7 @@ function closePopupAulaExperimental() {
         }
         
         popup.style.display = 'none';
-        document.body.style.overflow = 'auto'; // Libera scroll
+        unlockScroll('popup');
     }
 }
 
