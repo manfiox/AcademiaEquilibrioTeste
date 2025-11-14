@@ -445,15 +445,29 @@ function handleMatriculaForm(e) {
     
     const plano = planoSelecionado.value;
     
-    // Criar mensagem para WhatsApp no formato solicitado
-    const whatsappMessage = `Olá, vim pelo site e gostaria de dar início a minha matrícula...%0A%0A%0A%0A` +
-                           `*SOLICITAÇÃO DE MATRÍCULA*%0A%0A` +
-                           `NOME: ${nome}%0A%0A` +
-                           `CPF:  ${cpf}%0A%0A` +
-                           `PLANO SELECIONADO: ${plano}`;
+    // Criar mensagem para WhatsApp no formato solicitado com caixa
+    const linhaSuperior = '__________________________________________________________';
+    const linhaVazia = '|                                                          |';
+    const linhaTitulo = '|             *SOLICITAÇÃO DE MATRÍCULA*                   |';
+    
+    // Calcular espaços para alinhar o conteúdo dentro da caixa (58 caracteres de largura total)
+    const nomeLinha = `|  NOME: ${nome}`;
+    const cpfLinha = `|  CPF:  ${cpf}`;
+    const planoLinha = `|  PLANO SELECIONADO: ${plano}`;
+    
+    const whatsappMessage = `Olá, vim pelo site e gostaria de dar início a minha matrícula...%0A%0A` +
+                           `${linhaSuperior}%0A` +
+                           `${linhaVazia}%0A` +
+                           `${linhaTitulo}%0A` +
+                           `${linhaVazia}%0A` +
+                           `${nomeLinha}${' '.repeat(Math.max(0, 56 - nomeLinha.length))}|%0A` +
+                           `${cpfLinha}${' '.repeat(Math.max(0, 56 - cpfLinha.length))}|%0A` +
+                           `${planoLinha}${' '.repeat(Math.max(0, 56 - planoLinha.length))}|%0A` +
+                           `${linhaVazia}%0A` +
+                           `${linhaSuperior}`;
     
     // Redirecionar para WhatsApp
-    window.open(`https://wa.me/5515996177546?text=${whatsappMessage}`, '_blank');
+    window.open(`https://wa.me/5515996177546?text=${encodeURIComponent(whatsappMessage)}`, '_blank');
     
     // Fechar modal e mostrar sucesso
     closeMatriculaModal();

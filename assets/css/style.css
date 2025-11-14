@@ -1925,6 +1925,8 @@ h4 { font-size: 1.5rem; }
 
 .form-group {
     margin-bottom: 1.5rem;
+    position: relative;
+    z-index: 1;
 }
 
 .form-group label {
@@ -2099,16 +2101,33 @@ h4 { font-size: 1.5rem; }
 }
 
 .modal-content {
-    background: #252525;
+    background: linear-gradient(145deg, #252525 0%, #1a1a1a 100%);
     margin: 2% auto;
     padding: 3rem;
-    border-radius: 20px;
+    padding-top: 3.5rem;
+    border-radius: 25px;
     max-width: 500px;
     position: relative;
-    box-shadow: var(--shadow-gold);
+    box-shadow: 
+        0 20px 60px rgba(0, 0, 0, 0.8),
+        0 0 40px rgba(243, 120, 0, 0.4);
+    border: 2px solid var(--dourado);
     max-height: 90vh;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-top: 130px;
+}
+
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-gold);
+    border-radius: 25px 25px 0 0;
+    z-index: 0;
 }
 
 
@@ -2117,17 +2136,18 @@ h4 { font-size: 1.5rem; }
 }
 
 .close {
-    position: sticky;
-    top: 0;
-    right: 0;
-    font-size: 2rem;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
     font-weight: 700;
     color: var(--dourado);
     cursor: pointer;
     transition: var(--transition);
-    z-index: 10;
-    background: rgba(37, 37, 37, 0.95);
-    padding: 0.5rem;
+    z-index: 100;
+    background: rgba(243, 120, 0, 0.1);
+    border: 2px solid var(--dourado);
+    padding: 0;
     border-radius: 50%;
     width: 40px;
     height: 40px;
@@ -2135,40 +2155,59 @@ h4 { font-size: 1.5rem; }
     align-items: center;
     justify-content: center;
     backdrop-filter: blur(5px);
-    float: right;
-    margin: -2.5rem -2.5rem 0 0;
-    margin-bottom: -40px;
+    float: none;
+    margin: 0;
 }
 
 
 .close:hover {
     transform: rotate(90deg);
-    color: var(--branco);
+    background: var(--dourado);
+    color: var(--preto-grafite);
+    border-color: var(--dourado);
 }
 
 .modal-header {
     text-align: center;
     margin-bottom: 2rem;
     padding-top: 0;
+    padding-right: 50px;
     position: relative;
     z-index: 1;
 }
-
 
 .modal-header i {
     font-size: 3rem;
     color: var(--dourado);
     margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
 }
 
 .modal-header h2 {
-    color: var(--dourado);
+    color: var(--dourado) !important;
+    text-shadow: 0 0 20px rgba(243, 120, 0, 0.5),
+                 0 2px 10px rgba(0, 0, 0, 0.8);
+    position: relative;
+    z-index: 1;
 }
 
 .modal-content p {
     color: var(--cinza-claro);
     text-align: center;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.modal-content form {
+    position: relative;
+    z-index: 1;
+}
+
+.modal-content .btn {
+    position: relative;
+    z-index: 1;
 }
 
 
@@ -2268,21 +2307,35 @@ h4 { font-size: 1.5rem; }
 }
 
 .popup-content {
-    background: linear-gradient(145deg, #252525 0%, #1a1a1a 100%);
-    padding: 3rem;
-    border-radius: 25px;
-    max-width: 500px;
-    width: 90%;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    text-align: center;
+    background: linear-gradient(145deg, #252525 0%, #1a1a1a 100%) !important;
+    padding: 3rem !important;
+    padding-top: 3.5rem !important;
+    border-radius: 25px !important;
+    max-width: 500px !important;
+    width: 90% !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    position: relative !important;
+    text-align: center !important;
     box-shadow: 
         0 20px 60px rgba(0, 0, 0, 0.8),
-        0 0 40px rgba(243, 120, 0, 0.4);
-    border: 2px solid var(--dourado);
-    animation: slideUp 0.4s ease;
-    margin: auto;
+        0 0 40px rgba(243, 120, 0, 0.4) !important;
+    border: 2px solid var(--dourado) !important;
+    animation: slideUp 0.4s ease !important;
+    margin-top: 200px !important;
+    margin-bottom: 20px !important;
+}
+
+.popup-content::before {
+    content: '' !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    height: 4px !important;
+    background: var(--gradient-gold) !important;
+    border-radius: 25px 25px 0 0 !important;
+    z-index: 0 !important;
 }
 
 @keyframes slideUp {
@@ -2312,6 +2365,7 @@ h4 { font-size: 1.5rem; }
     transition: var(--transition);
     color: var(--dourado);
     font-size: 1.2rem;
+    z-index: 10;
 }
 
 .popup-close:hover {
@@ -2333,15 +2387,21 @@ h4 { font-size: 1.5rem; }
     color: var(--preto-grafite);
     box-shadow: 0 10px 30px rgba(255, 128, 0, 0.5);
     animation: pulse 2s infinite;
+    position: relative;
+    z-index: 1;
 }
 
 .popup-content h2 {
-    font-family: 'Anton', sans-serif;
-    font-size: 2rem;
-    color: var(--branco);
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-family: 'Anton', sans-serif !important;
+    font-size: 2rem !important;
+    color: var(--dourado) !important;
+    margin-bottom: 1rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 2px !important;
+    text-shadow: 0 0 20px rgba(243, 120, 0, 0.5),
+                 0 2px 10px rgba(0, 0, 0, 0.8) !important;
+    position: relative !important;
+    z-index: 1 !important;
 }
 
 .popup-content > p {
@@ -2349,12 +2409,16 @@ h4 { font-size: 1.5rem; }
     font-size: 1.1rem;
     margin-bottom: 1.5rem;
     line-height: 1.6;
+    position: relative;
+    z-index: 1;
 }
 
 .popup-benefits {
     list-style: none;
     margin-bottom: 2rem;
     text-align: left;
+    position: relative;
+    z-index: 1;
 }
 
 .popup-benefits li {
@@ -2376,6 +2440,8 @@ h4 { font-size: 1.5rem; }
     width: 100%;
     margin-bottom: 1rem;
     justify-content: center;
+    position: relative;
+    z-index: 1;
 }
 
 .btn-text {
@@ -2386,6 +2452,8 @@ h4 { font-size: 1.5rem; }
     font-size: 0.9rem;
     transition: var(--transition);
     text-decoration: underline;
+    position: relative;
+    z-index: 1;
 }
 
 .btn-text:hover {
@@ -2397,6 +2465,8 @@ h4 { font-size: 1.5rem; }
     margin-top: 1.5rem;
     padding-top: 1rem;
     border-top: 1px solid rgba(243, 120, 0, 0.2);
+    position: relative;
+    z-index: 1;
 }
 
 .popup-checkbox label {
@@ -3219,8 +3289,23 @@ h4 { font-size: 1.5rem; }
     
     .modal-content {
         padding: 2rem;
+        padding-top: 2.5rem;
         max-height: 85vh;
-        margin-top: 130px;
+        margin-top: 80px;
+        border-radius: 20px;
+        width: 95%;
+    }
+    
+    .modal-content::before {
+        border-radius: 20px 20px 0 0;
+    }
+    
+    .modal-content .close {
+        top: 10px;
+        right: 10px;
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
     }
 
     .modal-matricula .modal-content {
@@ -3451,11 +3536,17 @@ h4 { font-size: 1.5rem; }
     }
     
     .popup-content {
-        padding: 2rem 1.5rem;
+        padding: 2rem 1.5rem 1.5rem 1.5rem;
+        padding-top: 2.5rem;
         max-height: 85vh;
-        margin-top: 10px;
+        margin-top: 80px;
         margin-bottom: 10px;
         width: 95%;
+        border-radius: 20px;
+    }
+    
+    .popup-content::before {
+        border-radius: 20px 20px 0 0;
     }
     
     .popup-icon {
@@ -3466,15 +3557,23 @@ h4 { font-size: 1.5rem; }
     }
     
     .popup-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.75rem;
     }
     
     .popup-content > p {
         font-size: 0.95rem;
+        margin-bottom: 1.25rem;
+    }
+    
+    .popup-benefits {
+        margin-bottom: 1.5rem;
     }
     
     .popup-benefits li {
         font-size: 0.9rem;
+        margin-bottom: 0.75rem;
     }
     
     .popup-close {
@@ -3483,6 +3582,26 @@ h4 { font-size: 1.5rem; }
         font-size: 1rem;
         top: 10px;
         right: 10px;
+    }
+    
+    .popup-content .btn {
+        padding: 14px 20px;
+        font-size: 0.95rem;
+        margin-bottom: 0.75rem;
+    }
+    
+    .btn-text {
+        font-size: 0.85rem;
+        margin-top: 0.5rem;
+    }
+    
+    .popup-checkbox {
+        margin-top: 1rem;
+        padding-top: 0.75rem;
+    }
+    
+    .popup-checkbox label {
+        font-size: 0.85rem;
     }
 
     .plano-resumo-card i {
