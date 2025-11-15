@@ -21,7 +21,7 @@
     align-items: center;
     justify-content: center;
     background: linear-gradient(135deg, var(--preto-grafite) 0%, #0d0d0d 100%);
-    overflow: hidden;
+    overflow: visible;
     padding: 120px 20px 80px;
 }
 
@@ -181,6 +181,8 @@
     position: relative;
     border-bottom: 3.5px solid var(--dourado);
     border-right: 3.5px solid var(--dourado);
+    overflow: visible;
+    overscroll-behavior: none;
 }
 
 .planos-premium-section::before {
@@ -204,6 +206,8 @@
     max-width: 1400px;
     margin: 0 auto;
     padding-top: 20px;
+    overflow: visible;
+    overscroll-behavior: none;
 }
 
 /* ========================================
@@ -220,6 +224,22 @@
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    overscroll-behavior: none;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: auto;
+    /* Garantir que o scroll da página funcione mesmo quando o mouse está sobre o card */
+    pointer-events: auto;
+}
+
+/* Garantir que elementos dentro do card não bloqueiem o scroll */
+.plano-premium-card * {
+    pointer-events: auto;
+}
+
+/* Permitir que o scroll da página funcione quando o mouse está sobre o card */
+.plano-premium-card,
+.plano-premium-card * {
+    overscroll-behavior-y: none;
 }
 
 .plano-premium-card::before {
@@ -232,6 +252,10 @@
     background: radial-gradient(circle, rgba(243, 120, 0, 0.1) 0%, transparent 70%);
     opacity: 0;
     transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 0;
+    overscroll-behavior: none;
+    touch-action: none;
 }
 
 .plano-premium-card:hover::before {
@@ -446,7 +470,7 @@
     cursor: pointer;
     transition: all 0.4s;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
     box-shadow: 0 10px 30px rgba(243, 120, 0, 0.3);
     display: flex;
     align-items: center;
@@ -564,7 +588,7 @@
     background: var(--preto-grafite);
     padding: 100px 20px;
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .cta-final::before {
@@ -638,7 +662,7 @@
         0 15px 40px rgba(243, 120, 0, 0.4),
         0 0 30px rgba(243, 120, 0, 0.2);
     position: relative;
-    overflow: hidden;
+    overflow: visible;
 }
 
 .btn-cta-final::before {

@@ -122,13 +122,58 @@ function unlockScroll(lockId) {
                     top: scrollPosition,
                     behavior: 'auto'
                 });
+                // Garantir que o scroll esteja realmente desbloqueado
+                ensureScrollUnlocked();
             }, 10);
         });
     }
 }
 
+// ========== FUNÇÃO DE LIMPEZA DE SCROLL ==========
+function ensureScrollUnlocked() {
+    // Verificar se há locks ativos quando não deveria haver
+    const html = document.documentElement;
+    const body = document.body;
+    
+    // Se não há locks ativos mas o scroll está bloqueado, desbloquear
+    if (scrollLocks.size === 0) {
+        // Remover classes de bloqueio
+        html.classList.remove('body-locked');
+        body.classList.remove('modal-open', 'popup-open');
+        
+        // Limpar estilos inline que podem estar bloqueando
+        if (html.style.position === 'fixed' && !scrollLocks.size) {
+            html.style.position = '';
+            html.style.overflow = '';
+            html.style.height = '';
+            html.style.width = '';
+        }
+        
+        if (body.style.position === 'fixed' && !scrollLocks.size) {
+            body.style.position = '';
+            body.style.overflow = '';
+            body.style.width = '';
+            body.style.top = '';
+            body.style.left = '';
+        }
+    }
+}
+
+// Verificar periodicamente se o scroll está travado incorretamente
+setInterval(ensureScrollUnlocked, 1000);
+
+// Desbloquear scroll ao fazer scroll (se não houver locks ativos)
+window.addEventListener('scroll', function() {
+    if (scrollLocks.size === 0) {
+        ensureScrollUnlocked();
+    }
+});
+
 // ========== INICIALIZAÇÃO ==========
 document.addEventListener('DOMContentLoaded', function() {
+    // Garantir que o scroll esteja desbloqueado ao carregar
+    ensureScrollUnlocked();
+    
     // Inicializar AOS (Animate On Scroll)
     AOS.init({
         duration: 1000,
@@ -142,6 +187,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initHeaderScroll();
     initFormValidation();
     initExperimentalPopup();
+    initPlanosCardScrollFix();
+    
+    // Garantir scroll desbloqueado após um pequeno delay
+    setTimeout(ensureScrollUnlocked, 500);
 });
 
 // ========== MOBILE MENU (Bootstrap) ==========
@@ -968,6 +1017,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+
+// ========== PREVENIR SCROLL INTERNO NOS CARDS DE PLANOS ==========
+function initPlanosCardScrollFix() {
+    const planosCards = document.querySelectorAll('.plano-premium-card');
+    
+    planosCards.forEach(card => {
+        // Prevenir que o card capture eventos de scroll
+        card.addEventListener('wheel', function(e) {
+            // Se o card não tem scroll interno, permitir que o scroll da página funcione
+            if (card.scrollHeight <= card.clientHeight) {
+                // Permitir que o scroll da página funcione normalmente
+                return true;
+            }
+        }, { passive: true });
+        
+        // Prevenir touch scroll dentro do card em mobile
+        card.addEventListener('touchmove', function(e) {
+            // Se o card não tem scroll interno, permitir que o scroll da página funcione
+            if (card.scrollHeight <= card.clientHeight) {
+                return true;
+            }
+        }, { passive: true });
+        
+        // Garantir que o card não capture eventos de scroll
+        card.style.overscrollBehavior = 'none';
+        card.style.touchAction = 'pan-y';
+    });
+}
+
+// Re-inicializar caso os cards sejam adicionados dinamicamente (após DOMContentLoaded)
+setTimeout(function() {
+    const observer = new MutationObserver(function(mutations) {
+        const planosCards = document.querySelectorAll('.plano-premium-card');
+        if (planosCards.length > 0) {
+            initPlanosCardScrollFix();
+        }
+    });
+    
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true
+    });
+}, 1000);
 
 console.log('%c🏋️‍♂️ Academia Equilíbrio', 'font-size: 20px; font-weight: bold; color: #D89B3A;');
 console.log('%cDesenvolvido por Caio Manfio', 'font-size: 14px; color: #E0E0E0;');
