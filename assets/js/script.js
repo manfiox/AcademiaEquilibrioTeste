@@ -10,38 +10,120 @@ let scrollPosition = 0;
 function lockScroll(lockId) {
     scrollLocks.add(lockId);
     
+    // Se já está bloqueado, não fazer nada
+    if (scrollLocks.size > 1) {
+        return;
+    }
+    
     // Salvar posição atual do scroll
-    scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop;
+    
+    // Bloquear scroll do HTML e body (prevenir barra dupla)
+    const html = document.documentElement;
+    const body = document.body;
+    
+    // Salvar estilos originais
+    const originalBodyOverflow = body.style.overflow;
+    const originalBodyPosition = body.style.position;
+    const originalBodyWidth = body.style.width;
+    const originalBodyTop = body.style.top;
+    const originalHtmlOverflow = html.style.overflow;
+    const originalHtmlHeight = html.style.height;
+    const originalHtmlPosition = html.style.position;
+    const originalHtmlWidth = html.style.width;
+    
+    // Armazenar no body para restaurar depois
+    body._originalStyles = {
+        overflow: originalBodyOverflow,
+        position: originalBodyPosition,
+        width: originalBodyWidth,
+        top: originalBodyTop
+    };
+    html._originalStyles = {
+        overflow: originalHtmlOverflow,
+        height: originalHtmlHeight,
+        position: originalHtmlPosition,
+        width: originalHtmlWidth
+    };
+    
+    // Bloquear scroll do HTML primeiro (prevenir barra dupla)
+    html.style.overflow = 'hidden';
+    html.style.height = '100%';
+    html.style.position = 'fixed';
+    html.style.width = '100%';
+    html.classList.add('body-locked');
     
     // Bloquear scroll do body
-    document.body.style.overflow = 'hidden';
-    document.body.style.position = 'fixed';
-    document.body.style.width = '100%';
-    document.body.style.top = `-${scrollPosition}px`;
+    body.style.overflow = 'hidden';
+    body.style.position = 'fixed';
+    body.style.width = '100%';
+    body.style.top = `-${scrollPosition}px`;
+    body.style.left = '0';
     
     // Adicionar classe para CSS
     if (lockId.includes('popup')) {
-        document.body.classList.add('popup-open');
+        body.classList.add('popup-open');
     } else {
-        document.body.classList.add('modal-open');
+        body.classList.add('modal-open');
     }
 }
 
 function unlockScroll(lockId) {
     scrollLocks.delete(lockId);
     
+    // Só restaurar se não houver mais locks
     if (scrollLocks.size === 0) {
-        // Restaurar scroll do body
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-        document.body.style.top = '';
+        const html = document.documentElement;
+        const body = document.body;
         
-        // Restaurar posição do scroll
-        window.scrollTo(0, scrollPosition);
+        // Restaurar estilos originais do HTML
+        if (html._originalStyles) {
+            html.style.overflow = html._originalStyles.overflow || '';
+            html.style.height = html._originalStyles.height || '';
+            html.style.position = html._originalStyles.position || '';
+            html.style.width = html._originalStyles.width || '';
+            delete html._originalStyles;
+        } else {
+            html.style.overflow = '';
+            html.style.height = '';
+            html.style.position = '';
+            html.style.width = '';
+        }
+        html.classList.remove('body-locked');
+        
+        // Restaurar estilos originais do body
+        if (body._originalStyles) {
+            body.style.overflow = body._originalStyles.overflow || '';
+            body.style.position = body._originalStyles.position || '';
+            body.style.width = body._originalStyles.width || '';
+            body.style.top = body._originalStyles.top || '';
+            delete body._originalStyles;
+        } else {
+            body.style.overflow = '';
+            body.style.position = '';
+            body.style.width = '';
+            body.style.top = '';
+        }
+        body.style.left = '';
         
         // Remover classes
-        document.body.classList.remove('modal-open', 'popup-open');
+        body.classList.remove('modal-open', 'popup-open');
+        
+        // Restaurar posição do scroll após um pequeno delay para garantir que os estilos foram aplicados
+        requestAnimationFrame(() => {
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: 'auto'
+            });
+            
+            // Forçar scroll novamente se necessário (fix para mobile)
+            setTimeout(() => {
+                window.scrollTo({
+                    top: scrollPosition,
+                    behavior: 'auto'
+                });
+            }, 10);
+        });
     }
 }
 
@@ -77,8 +159,14 @@ function initMobileMenu() {
         link.addEventListener('click', function() {
             if (window.innerWidth < 992) {
                 const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
-                if (bsCollapse) {
+                if (bsCollapse && bsCollapse._isShown()) {
                     bsCollapse.hide();
+                    // Garantir que o scroll seja desbloqueado após fechar o menu
+                    setTimeout(() => {
+                        if (scrollLocks.has('mobile-menu')) {
+                            unlockScroll('mobile-menu');
+                        }
+                    }, 300);
                 }
             }
         });
@@ -86,11 +174,51 @@ function initMobileMenu() {
     
     // Bloquear scroll quando menu está aberto
     navbarCollapse.addEventListener('show.bs.collapse', function() {
-        lockScroll('mobile-menu');
+        if (window.innerWidth < 992) {
+            lockScroll('mobile-menu');
+        }
+    });
+    
+    navbarCollapse.addEventListener('shown.bs.collapse', function() {
+        // Garantir que o scroll esteja bloqueado após o menu abrir completamente
+        if (window.innerWidth < 992 && !scrollLocks.has('mobile-menu')) {
+            lockScroll('mobile-menu');
+        }
     });
     
     navbarCollapse.addEventListener('hide.bs.collapse', function() {
-        unlockScroll('mobile-menu');
+        // Preparar para desbloquear antes do menu fechar completamente
+        if (window.innerWidth < 992) {
+            // Pequeno delay para garantir que o Bootstrap termine a animação
+            setTimeout(() => {
+                unlockScroll('mobile-menu');
+            }, 150);
+        }
+    });
+    
+    navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+        // Garantir que o scroll seja desbloqueado após o menu fechar completamente
+        if (window.innerWidth < 992 && scrollLocks.has('mobile-menu')) {
+            unlockScroll('mobile-menu');
+        }
+    });
+    
+    // Listener para quando a janela redimensiona e o menu precisa ser fechado
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (window.innerWidth >= 992) {
+                // Se estiver em desktop, garantir que o menu esteja fechado e scroll desbloqueado
+                const bsCollapse = bootstrap.Collapse.getInstance(navbarCollapse);
+                if (bsCollapse && bsCollapse._isShown()) {
+                    bsCollapse.hide();
+                }
+                if (scrollLocks.has('mobile-menu')) {
+                    unlockScroll('mobile-menu');
+                }
+            }
+        }, 250);
     });
     
     console.log('Menu Bootstrap inicializado com sucesso!');
